@@ -4,21 +4,49 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<SplitPane dividerPositions="0.15361445783132532" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.15361445783132532" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="340.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
   <items>
-    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="360.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="360.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="101.0" layoutY="14.0" prefHeight="30.0" prefWidth="155.0" text="Nouvel Employé" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="101.0" AnchorPane.rightAnchor="102.0" AnchorPane.topAnchor="14.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="75.0" layoutY="14.0" prefHeight="22.0" prefWidth="148.0" text="Nouvel Employé" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="14.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
          </children></AnchorPane>
-    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="360.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="360.0">
          <children>
-            <VBox prefHeight="334.0" prefWidth="360.0">
+            <VBox prefHeight="283.0" prefWidth="300.0">
                <children>
-                  <TextField />
+                  <Label prefHeight="18.0" prefWidth="62.0" text="Nom">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField prefHeight="30.0" prefWidth="360.0" />
+                  <Label text="Prénom">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField prefHeight="30.0" prefWidth="360.0" />
+                  <Label text="Contact">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField prefHeight="30.0" prefWidth="360.0" />
+                  <Label text="Rôle">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField prefHeight="30.0" prefWidth="294.0" />
+                  <AnchorPane prefHeight="54.0" prefWidth="300.0">
+                     <children>
+                        <Button layoutX="87.0" layoutY="12.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="126.0" text="Ajouter Employé" />
+                     </children>
+                  </AnchorPane>
                </children>
             </VBox>
          </children></AnchorPane>
