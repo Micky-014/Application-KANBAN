@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="controller.MainView">
+    <TabPane prefHeight="600" prefWidth="800">
+        <Tab text="Employés">
+            <AnchorPane fx:id="employeTab">
+            <children>
+               <ListView prefHeight="573.0" prefWidth="800.0" />
+            </children></AnchorPane>
+        </Tab>
+        <Tab text="Projets">
+            <AnchorPane fx:id="projetTab" />
+        </Tab>
+        <Tab text="Calendrier">
+            <AnchorPane fx:id="calendrierTab" />
+        </Tab>
+    </TabPane>
+</AnchorPane>
