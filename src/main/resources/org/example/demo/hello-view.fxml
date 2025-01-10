@@ -64,18 +64,33 @@
                             </SplitPane>
                             <SplitPane dividerPositions="0.33, 0.66" layoutY="49.0">
                                 <items>
-                                    <AnchorPane minHeight="800.0" minWidth="0.0">
-                                        <cursor>
-                                            <Cursor fx:constant="H_RESIZE" />
-                                        </cursor></AnchorPane>
-                                    <AnchorPane>
-                                        <cursor>
-                                            <Cursor fx:constant="H_RESIZE" />
-                                        </cursor></AnchorPane>
-                                    <AnchorPane>
-                                        <cursor>
-                                            <Cursor fx:constant="H_RESIZE" />
-                                        </cursor></AnchorPane>
+                           <VBox>
+                              <children>
+                                          <AnchorPane minHeight="800.0" minWidth="0.0">
+                                              <cursor>
+                                                  <Cursor fx:constant="H_RESIZE" />
+                                              </cursor>
+                                 </AnchorPane>
+                              </children>
+                           </VBox>
+                           <VBox>
+                              <children>
+                                          <AnchorPane>
+                                              <cursor>
+                                                  <Cursor fx:constant="H_RESIZE" />
+                                              </cursor>
+                                 </AnchorPane>
+                              </children>
+                           </VBox>
+                           <VBox>
+                              <children>
+                                          <AnchorPane>
+                                              <cursor>
+                                                  <Cursor fx:constant="H_RESIZE" />
+                                              </cursor>
+                                 </AnchorPane>
+                              </children>
+                           </VBox>
                                 </items>
                             </SplitPane>
                         </children>
