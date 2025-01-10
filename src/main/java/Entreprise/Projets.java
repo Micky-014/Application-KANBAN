@@ -14,7 +14,9 @@ public class Projets {
     private List<Employes> listeEmployes = new ArrayList<Employes>();
     private List<Taches> listeTaches = new ArrayList<Taches>();
     private static HashMap<Integer,Projets> listeProjets = new HashMap<Integer,Projets>();
-    public Projets(String nomDeProjet, LocalDate debut, LocalDate fin) {
+
+    public Projets(int id, String nomDeProjet, LocalDate debut, LocalDate fin) {
+        this.id = id;
         this.nomDeProjet = nomDeProjet;
         this.debut = debut;
         this.fin = fin;
@@ -44,5 +46,17 @@ public class Projets {
     }
     public void setFin(LocalDate fin) {
         this.fin = fin;
+    }
+
+    public String getTitre(){
+        return nomDeProjet;
+    }
+
+    public void ajouterTache(Taches tache) {
+        listeTaches.add(tache);
+    }
+
+    public void supprimerTache(Taches tache) {
+        listeTaches.remove(tache);
     }
 }
