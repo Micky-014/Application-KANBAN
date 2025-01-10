@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<SplitPane dividerPositions="0.15361445783132532" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="340.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+    <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="360.0">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="75.0" layoutY="14.0" prefHeight="22.0" prefWidth="148.0" text="Nouvelle Tâche" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="14.0">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+            </children></AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="360.0">
+            <children>
+                <VBox prefHeight="283.0" prefWidth="300.0">
+                    <children>
+                        <Label prefHeight="27.0" prefWidth="144.0" text="Nom de la tâche">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <TextField prefHeight="30.0" prefWidth="360.0" />
+                  <AnchorPane prefHeight="60.0" prefWidth="300.0">
+                     <children>
+                        <Label layoutX="28.0" layoutY="5.0" prefHeight="30.0" prefWidth="138.0" text="Date de début" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                        <SplitPane dividerPositions="0.29797979797979796" layoutX="-1.0" layoutY="32.0" prefHeight="30.0" prefWidth="304.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+                        <AnchorPane prefHeight="54.0" prefWidth="300.0">
+                            <children>
+                                <Button layoutX="87.0" layoutY="12.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="126.0" text="Ajouter Ajouter Tâche" />
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </VBox>
+            </children></AnchorPane>
+    </items>
+</SplitPane>
