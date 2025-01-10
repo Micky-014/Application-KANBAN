@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxdemo.HelloController">
+<VBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.HelloController">
     <ToolBar nodeOrientation="RIGHT_TO_LEFT">
         <items>
             <Button mnemonicParsing="false" prefHeight="53.0" prefWidth="63.0" text="Button" />
