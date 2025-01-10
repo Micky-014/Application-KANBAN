@@ -37,5 +37,3 @@ public class Employes {
         this.contact = contact;
     }
 }
-
-###
