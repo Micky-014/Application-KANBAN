@@ -1,21 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainView">
     <TabPane prefHeight="600" prefWidth="800">
         <Tab text="Employés">
-            <AnchorPane fx:id="employeTab">
+         <VBox>
             <children>
-               <ListView prefHeight="571.0" prefWidth="800.0" />
-            </children></AnchorPane>
+               <HBox>
+                  <children>
+                        <AnchorPane fx:id="employeTab" />
+                  </children>
+               </HBox>
+               <HBox alignment="CENTER_LEFT" prefHeight="68.0" prefWidth="800.0">
+                  <children>
+                     <Button mnemonicParsing="false" text="Ajouter Employé">
+                        <font>
+                           <Font size="18.0" />
+                        </font>
+                        <HBox.margin>
+                           <Insets right="5.0" />
+                        </HBox.margin></Button>
+                  </children>
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin></HBox>
+               <ListView prefHeight="506.0" prefWidth="800.0" />
+            </children>
+         </VBox>
         </Tab>
         <Tab text="Projets">
-            <AnchorPane fx:id="projetTab">
+         <VBox>
             <children>
-               <ListView prefHeight="573.0" prefWidth="800.0" />
-            </children></AnchorPane>
+                  <AnchorPane fx:id="projetTab">
+                  <children>
+                     <HBox alignment="CENTER_LEFT" prefHeight="68.0" />
+                     <ListView layoutY="68.0" prefHeight="503.0" prefWidth="800.0" />
+                     <Button layoutY="22.0" mnemonicParsing="false" text="Ajouter Projet">
+                        <font>
+                           <Font size="18.0" />
+                        </font>
+                     </Button>
+                  </children>
+               </AnchorPane>
+            </children>
+         </VBox>
         </Tab>
         <Tab text="Calendrier">
             <AnchorPane fx:id="calendrierTab" />
