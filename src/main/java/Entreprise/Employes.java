@@ -9,14 +9,18 @@ public class  Employes {
     private String nom;
     private String prenom;
     private String contact;
+    private String role;
     private List<Projets> historiqueProjets;
+    private static List<Employes> ListeEmployes= new ArrayList<>();
 
-    public Employes(String nom, String prenom, String contact) {
+    public Employes(String nom, String prenom, String contact, String role) {
         this.nom = nom;
         this.prenom = prenom;
         this.contact = contact;
+        this.role = role;
         this.id = nombreID++;
         this.historiqueProjets= new ArrayList<>();
+        ListeEmployes.add(this);
     }
     public int getId() {
         return id;

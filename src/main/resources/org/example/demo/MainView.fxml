@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainView">
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.MainViewController">
     <TabPane prefHeight="600" prefWidth="800">
         <Tab text="Employés">
          <VBox>
@@ -17,7 +17,7 @@
                </HBox>
                <HBox alignment="CENTER_LEFT" prefHeight="68.0" prefWidth="800.0">
                   <children>
-                     <Button mnemonicParsing="false" text="Ajouter Employé">
+                     <Button mnemonicParsing="false" text="Ajouter Employé" onAction="#handleAjouterEmploye">
                         <font>
                            <Font size="18.0" />
                         </font>
@@ -28,7 +28,7 @@
                   <VBox.margin>
                      <Insets />
                   </VBox.margin></HBox>
-               <ListView prefHeight="506.0" prefWidth="800.0" />
+                <ListView fx:id="employeListView" prefHeight="506.0" prefWidth="800.0" />
             </children>
          </VBox>
         </Tab>
@@ -39,7 +39,7 @@
                   <children>
                      <HBox alignment="CENTER_LEFT" prefHeight="68.0" />
                      <ListView layoutY="68.0" prefHeight="503.0" prefWidth="800.0" />
-                     <Button layoutY="22.0" mnemonicParsing="false" text="Ajouter Projet">
+                     <Button layoutY="14.0" mnemonicParsing="false" text="Ajouter Projet">
                         <font>
                            <Font size="18.0" />
                         </font>
