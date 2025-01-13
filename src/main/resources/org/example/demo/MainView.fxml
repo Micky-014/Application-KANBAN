@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.MainViewController">
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.MainViewController">
     <TabPane prefHeight="600" prefWidth="800">
         <Tab text="Employés">
          <VBox>
@@ -16,19 +22,18 @@
                   </children>
                </HBox>
                <HBox alignment="CENTER_LEFT" prefHeight="68.0" prefWidth="800.0">
-                  <children>
-                     <Button mnemonicParsing="false" text="Ajouter Employé" onAction="#handleAjouterEmploye">
-                        <font>
-                           <Font size="18.0" />
-                        </font>
-                        <HBox.margin>
-                           <Insets right="5.0" />
-                        </HBox.margin></Button>
-                  </children>
                   <VBox.margin>
                      <Insets />
-                  </VBox.margin></HBox>
+                  </VBox.margin>
+                  <children>
+                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="769.0" text="Liste des employés" HBox.hgrow="NEVER" />
+                  </children></HBox>
                 <ListView fx:id="employeListView" prefHeight="506.0" prefWidth="800.0" />
+               <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleAjouterEmploye" text="Ajouter Employé">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Button>
             </children>
          </VBox>
         </Tab>
@@ -39,11 +44,12 @@
                   <children>
                      <HBox alignment="CENTER_LEFT" prefHeight="68.0" />
                      <ListView layoutY="68.0" prefHeight="503.0" prefWidth="800.0" />
-                     <Button layoutY="14.0" mnemonicParsing="false" text="Ajouter Projet">
+                     <Button layoutX="14.0" layoutY="518.0" mnemonicParsing="false" text="Ajouter Projet">
                         <font>
                            <Font size="18.0" />
                         </font>
                      </Button>
+                     <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="26.0" prefHeight="17.0" prefWidth="777.0" text="Liste des projets" />
                   </children>
                </AnchorPane>
             </children>

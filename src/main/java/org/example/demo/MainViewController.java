@@ -41,6 +41,7 @@ public class MainViewController {
         }
     }
 
+
     // Méthode pour ajouter un employé à la ListView
     public void addEmployeToList(String nom, String prenom, String contact, String role) {
         Employes newEmploye = new Employes(nom, prenom, contact, role);
@@ -87,10 +88,12 @@ public class MainViewController {
             // Passer les détails de l'employé au contrôleur
             controller.setEmployeDetails(employe);
 
-            controller.setDeleteCallback(() -> {
-                Employes.suprEmploye(employe); // **Supprimer de la liste globale**
-                employeList.remove(employe); // **Supprimer de l'ObservableList**
-            });
+            //controller.setDeleteCallback(employe);
+            //    Employes.suprEmploye(employe); // **Supprimer de la liste globale**
+              //  employeList.remove(employe); // **Supprimer de l'ObservableList**
+
+
+
             // Afficher la fenêtre
             Stage stage = new Stage();
             stage.setTitle("Détails de l'Employé");

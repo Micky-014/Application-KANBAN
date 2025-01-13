@@ -79,4 +79,7 @@ public class  Employes {
             System.out.println("-"+projet.getTitre());
         }
     }
+    public String getHistoriqueProjets() {
+        return historiqueProjets.toString();
+    }
 }
