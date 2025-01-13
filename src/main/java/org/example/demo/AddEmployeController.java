@@ -1,5 +1,6 @@
 package org.example.demo;
 
+import Entreprise.Employes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -33,9 +34,8 @@ public class AddEmployeController {
         String prenom = prenomField.getText();
         String contact = contactField.getText();
         String role = roleField.getText();
-  //      Employes employe = new Employe
         // Ajouter l'employé à la ListView du contrôleur principal
-        if (mainController != null) {
+        if ((mainController != null) && (nom!= "") && (prenom != "") && (contact != "") && (role != "")) {
             mainController.addEmployeToList(nom, prenom, contact, role);
         }
 

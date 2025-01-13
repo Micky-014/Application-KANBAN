@@ -46,6 +46,12 @@ public class  Employes {
     public void setContact(String contact) {
         this.contact = contact;
     }
+    public String getRole() {
+        return role;
+    }
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public void modifier(String nom, String prenom, String email) {
         this.nom = nom;
