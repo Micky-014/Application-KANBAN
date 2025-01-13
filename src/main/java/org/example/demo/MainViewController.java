@@ -49,6 +49,7 @@ public class MainViewController {
 
     @FXML
     public void initialize() {
+        employeList.addAll(Employes.getListeEmployes());
         employeListView.setItems(employeList);
 
         employeListView.setCellFactory(param -> new javafx.scene.control.ListCell<>() {
@@ -86,6 +87,10 @@ public class MainViewController {
             // Passer les détails de l'employé au contrôleur
             controller.setEmployeDetails(employe);
 
+            controller.setDeleteCallback(() -> {
+                Employes.suprEmploye(employe); // **Supprimer de la liste globale**
+                employeList.remove(employe); // **Supprimer de l'ObservableList**
+            });
             // Afficher la fenêtre
             Stage stage = new Stage();
             stage.setTitle("Détails de l'Employé");

@@ -22,6 +22,12 @@ public class  Employes {
         this.historiqueProjets= new ArrayList<>();
         ListeEmployes.add(this);
     }
+    public static void suprEmploye(Employes employe){
+        ListeEmployes.remove(employe);
+    }
+    public static List<Employes> getListeEmployes(){
+        return ListeEmployes;
+    }
     public int getId() {
         return id;
     }
