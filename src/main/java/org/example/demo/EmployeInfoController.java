@@ -55,15 +55,19 @@ public class EmployeInfoController {
             deleteCallback.run(); // **Appelle le callback pour synchroniser la suppression**
         }
     }
-            @FXML
-            private void deleteEmploye (ActionEvent event){
+    @FXML
+    private void deleteEmploye (ActionEvent event){
                 // Demander confirmation
-                suprEmploye(employe);
-                employeList.remove(employe);
+        suprEmploye(employe);
+        employeList.remove(employe);
                 // Fermer la fenêtre
-                Stage stage = (Stage) nomLabel.getScene().getWindow();
-                stage.close();
-            }
-        }
+        Stage stage = (Stage) nomLabel.getScene().getWindow();
+        stage.close();
+    }
+    @FXML
+    private void changeEmployee(ActionEvent event) {
+
+    }
+}
 
 
