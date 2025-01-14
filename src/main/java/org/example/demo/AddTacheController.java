@@ -29,7 +29,6 @@ public class AddTacheController {
         int annee = Integer.parseInt(anneeField.getText());
         if ((nom != "") && (priorite != "") && (jour > 0 && mois > 0 && annee > 1990) && (jour < 31 && mois < 12)){
             Taches tache = new Taches(nom,priorite,LocalDate.of(annee,mois,jour));
-            projet.addListeTache(tache);
         }
     }
 }

@@ -4,6 +4,8 @@ import Entreprise.Projets;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -16,6 +18,12 @@ public class KanbanController {
             // Charger la fenêtre d'ajout de tache
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AddTache.fxml"));
             Parent root = loader.load();
+
+            // Créer une nouvelle fenêtre pour la tâche
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Ajouter une Tâche");
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
