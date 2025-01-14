@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<SplitPane dividerPositions="0.15361445783132532" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="329.0" prefWidth="300.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.AddEmployeController">
+<SplitPane dividerPositions="0.15361445783132532" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="329.0" prefWidth="300.0" stylesheets="@../../../../../../target/classes/org/example/demo/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.AddEmployeController">
    <items>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="360.0">
          <children>
