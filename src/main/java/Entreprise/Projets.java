@@ -15,8 +15,8 @@ public class Projets {
     private List<Taches> listeTaches = new ArrayList<Taches>();
     private static HashMap<Integer,Projets> listeProjets = new HashMap<Integer,Projets>();
 
-    public Projets(int id, String nomDeProjet, LocalDate debut, LocalDate fin) {
-        this.id = id;
+    public Projets(String nomDeProjet, LocalDate debut, LocalDate fin) {
+        this.id = nombreID++;
         this.nomDeProjet = nomDeProjet;
         this.debut = debut;
         this.fin = fin;

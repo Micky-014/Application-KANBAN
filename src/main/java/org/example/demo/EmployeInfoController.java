@@ -33,10 +33,15 @@ public class EmployeInfoController {
     @FXML
     private TextField roleField;
 
-
+    private MainViewController mainController;
+    public void setMainController(MainViewController mainController) {
+        this.mainController = mainController;
+    }
 
     // Méthode pour définir les détails d'un employé
     public void setEmployeDetails(Employes employe) {
+
+        this.employe = employe;
         if (employe != null) {
             nomField.setText(employe.getNom());
             prenomField.setText(employe.getPrenom());
@@ -51,12 +56,6 @@ public class EmployeInfoController {
 
     }
 
-    public void setDeleteCallback(Employes employe) {
-        Employes selectedEmploye = employeListView.getSelectionModel().getSelectedItem();
-        if (selectedEmploye != null) {
-            employeListView.getItems().remove(selectedEmploye);
-        }
-    }
     //private void afficherHistorique() {
         //historiqueListView.getItems().setAll(employe.getHistoriqueProjets());
     //}
@@ -84,6 +83,9 @@ public class EmployeInfoController {
             prenomField.setEditable(false);
             contactField.setEditable(false);
             roleField.setEditable(false);
+            if (mainController != null) {
+                mainController.refreshListView();
+            }
         }
     }
 
@@ -93,6 +95,17 @@ public class EmployeInfoController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+
+    @FXML
+    private void handleDelete() {
+        if (employe != null && mainController != null) {
+            mainController.deleteEmployeFromList(employe);
+            afficherMessage("Suppression réussie", "L'employé a été supprimé.");
+            // Fermer la fenêtre actuelle
+            idLabel.getScene().getWindow().hide();
+        }
     }
 }
 

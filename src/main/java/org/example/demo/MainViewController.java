@@ -46,12 +46,13 @@ public class MainViewController {
     public void addEmployeToList(String nom, String prenom, String contact, String role) {
         Employes newEmploye = new Employes(nom, prenom, contact, role);
         employeList.add(newEmploye); // Ajoute directement l'objet Employes
+        employeListView.setItems(employeList);
     }
 
     @FXML
     public void initialize() {
         employeList.addAll(Employes.getListeEmployes());
-        employeListView.setItems(employeList);
+        employeListView.setItems(employeList); // Assurez-vous que la liste observable est définie ici.
 
         employeListView.setCellFactory(param -> new javafx.scene.control.ListCell<>() {
             @Override
@@ -78,23 +79,13 @@ public class MainViewController {
     // Méthode pour afficher les détails d'un employé dans une nouvelle fenêtre
     private void showEmployeDetails(Employes employe) {
         try {
-            // Charger la vue des détails de l'employé
             FXMLLoader loader = new FXMLLoader(getClass().getResource("EmployeInfo.fxml"));
             Parent root = loader.load();
 
-            // Obtenir le contrôleur associé
             EmployeInfoController controller = loader.getController();
-
-            // Passer les détails de l'employé au contrôleur
             controller.setEmployeDetails(employe);
+            controller.setMainController(this); // Transmettre le contrôleur principal
 
-            //controller.setDeleteCallback(employe);
-            //    Employes.suprEmploye(employe); // **Supprimer de la liste globale**
-              //  employeList.remove(employe); // **Supprimer de l'ObservableList**
-
-
-
-            // Afficher la fenêtre
             Stage stage = new Stage();
             stage.setTitle("Détails de l'Employé");
             stage.setScene(new Scene(root));
@@ -104,6 +95,17 @@ public class MainViewController {
         }
     }
 
+
+    public void refreshListView() {
+        employeList.setAll(Employes.getListeEmployes()); // Recharge la liste globale
+        employeListView.refresh(); // Rafraîchit visuellement
+    }
+
+    public void deleteEmployeFromList(Employes employe) {
+        if (employe != null) {
+            Employes.suprEmploye(employe); // Suppression de la liste globale
+            employeList.remove(employe);  // Suppression de la `ObservableList`
+            employeListView.refresh();    // Rafraîchir visuellement la `ListView`
+        }
+    }
 }
-
-
