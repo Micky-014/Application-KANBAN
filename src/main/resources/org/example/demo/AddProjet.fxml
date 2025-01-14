@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<SplitPane dividerPositions="0.15361445783132532" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="370.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.15361445783132532" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="370.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.AddProjetController">
     <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="360.0">
             <children>
@@ -14,7 +14,9 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Label>
-            </children></AnchorPane>
+            </children>
+        </AnchorPane>
+
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="329.0" prefWidth="298.0">
             <children>
                 <VBox prefHeight="325.0" prefWidth="304.0">
@@ -24,16 +26,19 @@
                                 <Font size="18.0" />
                             </font>
                         </Label>
-                        <TextField prefHeight="30.0" prefWidth="360.0">
+                        <TextField prefHeight="30.0" prefWidth="360.0" fx:id="nomProjetField">
                             <VBox.margin>
                                 <Insets right="6.0" />
-                            </VBox.margin></TextField>
+                            </VBox.margin>
+                        </TextField>
+
                         <AnchorPane prefHeight="60.0" prefWidth="300.0">
                             <children>
                                 <Label layoutX="28.0" layoutY="5.0" prefHeight="30.0" prefWidth="138.0" text="Date de début" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <font>
                                         <Font size="18.0" />
-                                    </font></Label>
+                                    </font>
+                                </Label>
                                 <SplitPane dividerPositions="0.33, 0.66" layoutY="32.0" prefHeight="63.0" prefWidth="304.0">
                                     <items>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -41,9 +46,11 @@
                                                 <Label alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="5.0" prefHeight="30.0" prefWidth="100.0" text="Jour" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                     <font>
                                                         <Font size="18.0" />
-                                                    </font></Label>
-                                                <TextField alignment="CENTER" layoutY="23.0" prefHeight="26.0" prefWidth="95.0" promptText="XX" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="28.0" />
-                                            </children></AnchorPane>
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="jourDebutField" alignment="CENTER" layoutY="23.0" prefHeight="26.0" prefWidth="95.0" promptText="XX" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="28.0" />
+                                            </children>
+                                        </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                             <children>
                                                 <Label alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="5.0" prefHeight="29.0" prefWidth="92.0" text="Mois" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
@@ -51,21 +58,24 @@
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField alignment="CENTER" layoutX="-2.0" layoutY="29.0" prefHeight="26.0" prefWidth="95.0" promptText="XX" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="28.0" />
-                                            </children></AnchorPane>
+                                                <TextField fx:id="moisDebutField" alignment="CENTER" layoutX="-2.0" layoutY="29.0" prefHeight="26.0" prefWidth="95.0" promptText="XX" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="28.0" />
+                                            </children>
+                                        </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                             <children>
-                                                <TextField alignment="CENTER" layoutX="-24.0" layoutY="1.0" promptText="XXXX" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="28.0" />
+                                                <TextField fx:id="anneeDebutField" alignment="CENTER" layoutX="-24.0" layoutY="1.0" promptText="XXXX" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="28.0" />
                                                 <Label alignment="CENTER" contentDisplay="CENTER" layoutX="34.0" layoutY="5.0" text="Année" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                     <font>
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Label>
-                                            </children></AnchorPane>
+                                            </children>
+                                        </AnchorPane>
                                     </items>
                                 </SplitPane>
                             </children>
                         </AnchorPane>
+
                         <AnchorPane prefHeight="95.0" prefWidth="304.0">
                             <children>
                                 <Label layoutY="5.0" text="Date de fin" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -82,8 +92,9 @@
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField alignment="CENTER" layoutX="-23.0" layoutY="27.0" promptText="XX" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="28.0" />
-                                            </children></AnchorPane>
+                                                <TextField fx:id="jourFinField" alignment="CENTER" layoutX="-23.0" layoutY="27.0" promptText="XX" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="28.0" />
+                                            </children>
+                                        </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                             <children>
                                                 <Label alignment="CENTER" layoutX="-3.0" prefHeight="18.0" prefWidth="98.0" text="Mois">
@@ -91,8 +102,9 @@
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField alignment="CENTER" layoutX="-28.0" layoutY="27.0" promptText="XX" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="28.0" />
-                                            </children></AnchorPane>
+                                                <TextField fx:id="moisFinField" alignment="CENTER" layoutX="-28.0" layoutY="27.0" promptText="XX" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="28.0" />
+                                            </children>
+                                        </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                             <children>
                                                 <Label alignment="CENTER" prefHeight="18.0" prefWidth="100.0" text="Année">
@@ -100,21 +112,26 @@
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField alignment="CENTER" layoutX="-24.0" layoutY="27.0" promptText="XXXX" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="28.0" />
-                                            </children></AnchorPane>
+                                                <TextField fx:id="anneeFinField" alignment="CENTER" layoutX="-24.0" layoutY="27.0" promptText="XXXX" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="28.0" />
+                                            </children>
+                                        </AnchorPane>
                                     </items>
                                 </SplitPane>
-                            </children></AnchorPane>
+                            </children>
+                        </AnchorPane>
+
                         <AnchorPane prefHeight="72.0" prefWidth="304.0">
                             <children>
-                                <Button layoutX="46.0" layoutY="7.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="211.0" text="Ajouter Projet">
+                                <Button layoutX="46.0" layoutY="7.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="211.0" text="Ajouter Projet" onAction="#handleAjouterProjet">
                                     <font>
                                         <Font size="18.0" />
-                                    </font></Button>
+                                    </font>
+                                </Button>
                             </children>
                         </AnchorPane>
                     </children>
                 </VBox>
-            </children></AnchorPane>
+            </children>
+        </AnchorPane>
     </items>
 </SplitPane>

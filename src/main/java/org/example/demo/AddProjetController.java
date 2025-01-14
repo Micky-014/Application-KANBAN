@@ -70,8 +70,9 @@ public class AddProjetController {
                 System.out.println("Veuillez entrer des dates valides !");
                 return;
             }
-            LocalDate debut = LocalDate.of(anneeDebutInt, jourDebutInt, moisDebutInt);
-            LocalDate fin = LocalDate.of(anneeFinInt, jourFinInt, moisFinInt);
+            LocalDate debut = LocalDate.of(anneeDebutInt, moisDebutInt, jourDebutInt);
+            LocalDate fin = LocalDate.of(anneeFinInt, moisFinInt, jourFinInt);
+
             // Ajouter le projet à la liste principale
             if (mainController != null) {
                 mainController.addProjetToList(nomProjet,debut,fin);

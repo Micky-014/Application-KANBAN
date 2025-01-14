@@ -22,6 +22,7 @@ public class MainViewController {
 
     private ObservableList<Employes> employeList = FXCollections.observableArrayList();
 
+    @FXML
     private ListView<Projets> projetsListView;
 
     private ObservableList<Projets> projetsList = FXCollections.observableArrayList();
@@ -30,7 +31,7 @@ public class MainViewController {
     public void handleAjouterEmploye() {
         try {
             // Charger la fenêtre d'ajout d'employé
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("addEmploye.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AddEmploye.fxml"));
             Parent root = loader.load();
 
             // Obtenir une instance du contrôleur et transmettre la référence
@@ -50,11 +51,11 @@ public class MainViewController {
     public void handleAjouterProjet() {
         try {
             // Charger la fenêtre d'ajout d'employé
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("addProjet.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AddProjet.fxml"));
             Parent root = loader.load();
 
             // Obtenir une instance du contrôleur et transmettre la référence
-            AddEmployeController controller = loader.getController();
+            AddProjetController controller = loader.getController();
             controller.setMainController(this);
 
             // Afficher la fenêtre d'ajout d'employé
