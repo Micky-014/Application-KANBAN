@@ -48,7 +48,7 @@ public class ProjetInfoController {
         }
 
         // Méthode pour définir les détails d'un employé
-        public void setprojetDetails(Projets projet) {
+        public void setProjetDetails(Projets projet) {
 
             this.projet = projet;
             if (projet != null) {

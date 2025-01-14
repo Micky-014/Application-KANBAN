@@ -99,7 +99,7 @@ public class MainViewController {
 
         projetsList.addAll(Projets.getListeProjets());
         projetsListView.setItems(projetsList);
-        
+
         projetsListView.setCellFactory(param -> new javafx.scene.control.ListCell<>() {
             @Override
             protected void updateItem(Projets projet, boolean empty) {
@@ -155,7 +155,7 @@ public class MainViewController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ProjetInfo.fxml"));
             Parent root = loader.load();
 
-            EmployeInfoController controller = loader.getController();
+            ProjetInfoController controller = loader.getController();
             controller.setProjetDetails(projet);
             controller.setMainController(this); // Transmettre le contrôleur principal
 
