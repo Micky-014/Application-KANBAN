@@ -64,4 +64,8 @@ public class Projets {
     public void supprimerTache(Taches tache) {
         listeTaches.remove(tache);
     }
+
+    public List<Taches> getTaches(){
+        return listeTaches;
+    }
 }
