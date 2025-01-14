@@ -209,12 +209,16 @@ public class MainViewController {
         try {
             // Charger le fichier FXML de la fenêtre Kanban
             FXMLLoader loader = new FXMLLoader(getClass().getResource("KANBAN.fxml"));
-            Scene scene = new Scene(loader.load());
+            Parent root = loader.load();
+
+            // Récupérer le contrôleur et lui transmettre le projet
+            KanbanController controller = loader.getController();
+            controller.setProjet(projet);
 
             // Créer une nouvelle fenêtre avec la scène KANBAN.fxml
             Stage newStage = new Stage();
-            newStage.setScene(scene);
-            newStage.setTitle("Kanban");
+            newStage.setScene(new Scene(root));
+            newStage.setTitle("Kanban - " + projet.getNomDeProjet());
 
             // Afficher la nouvelle fenêtre Kanban
             newStage.show();
@@ -223,4 +227,5 @@ public class MainViewController {
             e.printStackTrace();
         }
     }
+
 }

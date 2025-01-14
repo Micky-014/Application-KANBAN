@@ -1,7 +1,7 @@
 package Entreprise;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,12 +10,12 @@ public class Taches {
     private int id;
     private String titre;
     private String priorite;
-    private Date dateLimite;
+    private LocalDate dateLimite;
     private Employes responsable;
     private String statut;
     private List<String> commentaires;
     private HashMap<Taches,List<Employes>> Equipe = new HashMap<Taches,List<Employes>>();
-    public Taches(String titre, String priorite, Date dateLimite) {
+    public Taches(String titre, String priorite, LocalDate dateLimite) {
         this.id = NombreId++;
         this.titre = titre;
         this.priorite = priorite;
@@ -24,7 +24,7 @@ public class Taches {
         this.commentaires = new ArrayList<>();
     }
 
-    public void modifier(String titre, String priorite, Date dateLimite, Employes responsable) {
+    public void modifier(String titre, String priorite, LocalDate dateLimite, Employes responsable) {
         this.titre = titre;
         this.priorite = priorite;
         this.dateLimite = dateLimite;
