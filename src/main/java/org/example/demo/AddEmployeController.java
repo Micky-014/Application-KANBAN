@@ -38,7 +38,6 @@ public class AddEmployeController {
         if ((mainController != null) && (nom!= "") && (prenom != "") && (contact != "") && (role != "")) {
             mainController.addEmployeToList(nom, prenom, contact, role);
         }
-
         // Fermer la fenêtre actuelle
         Stage stage = (Stage) nomField.getScene().getWindow();
         stage.close();

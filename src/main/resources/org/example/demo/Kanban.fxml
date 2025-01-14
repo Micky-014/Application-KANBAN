@@ -9,10 +9,8 @@
 <VBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.HelloController">
     <ToolBar nodeOrientation="RIGHT_TO_LEFT">
         <items>
-            <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="116.0" text="Ajouter Employé" />
-            <Button onAction="#onHelloButtonClick" prefHeight="52.0" prefWidth="116.0" text="Nouvel Tâche" />
+            <Button onAction="#onHelloButtonClick" prefHeight="52.0" prefWidth="116.0" text="Nouvelle Tâche" />
          <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="116.0" text="Liste Employés" />
-         <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="116.0" text="Supprimé Employé" />
         </items>
     </ToolBar>
     <HBox VBox.vgrow="ALWAYS">

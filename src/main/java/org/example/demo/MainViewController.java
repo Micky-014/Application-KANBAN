@@ -205,7 +205,7 @@ public class MainViewController {
             projetsListView.refresh();  // Rafraîchir visuellement la `ListView`
         }
     }
-    private void showKanban(Projets projet) {
+    public void showKanban(Projets projet) {
         try {
             // Charger le fichier FXML de la fenêtre Kanban
             FXMLLoader loader = new FXMLLoader(getClass().getResource("KANBAN.fxml"));
@@ -215,8 +215,6 @@ public class MainViewController {
             Stage newStage = new Stage();
             newStage.setScene(scene);
             newStage.setTitle("Kanban");
-
-            // Fermer la fenêtre actuelle;
 
             // Afficher la nouvelle fenêtre Kanban
             newStage.show();
