@@ -20,7 +20,6 @@ public class Projets {
         this.nomDeProjet = nomDeProjet;
         this.debut = debut;
         this.fin = fin;
-        nombreID++;
         listeProjets.add(this);
     }
     public int getId() {

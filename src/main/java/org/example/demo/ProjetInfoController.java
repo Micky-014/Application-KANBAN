@@ -56,9 +56,9 @@ public class ProjetInfoController {
                 jourDebutField.setText(String.valueOf(projet.getDebut().getDayOfMonth()));
                 moisDebutField.setText(String.valueOf(projet.getDebut().getMonthValue()));
                 anneeDebutField.setText(String.valueOf(projet.getDebut().getYear()));
-                jourFinField.setText(String.valueOf(projet.getDebut().getMonthValue()));
-                moisFinField.setText(String.valueOf(projet.getDebut().getYear()));
-                anneeFinField.setText(String.valueOf(projet.getDebut().getMonthValue()));
+                jourFinField.setText(String.valueOf(projet.getDebut().getDayOfMonth()));
+                moisFinField.setText(String.valueOf(projet.getDebut().getMonthValue()));
+                anneeFinField.setText(String.valueOf(projet.getDebut().getYear()));
                 idLabel.setText(String.valueOf(projet.getId()));
             }
             nomField.setEditable(false);
@@ -126,10 +126,14 @@ public class ProjetInfoController {
         private void handleDelete() {
             if (projet != null && mainController != null) {
                 mainController.deleteProjetFromList(projet);
-                afficherMessage("Suppression réussie", "L'employé a été supprimé.");
+                afficherMessage("Suppression réussie", "Le projet a été supprimé.");
                 // Fermer la fenêtre actuelle
                 idLabel.getScene().getWindow().hide();
             }
+        }
+
+        private void handleKanban(){
+
         }
     }
 

@@ -16,6 +16,20 @@ import java.time.LocalDate;
 
 public class MainViewController {
 
+    Employes employe1 = new Employes("Dupont", "Jean", "jean.dupont@email.com", "Développeur");
+    Employes employe2 = new Employes("Martin", "Claire", "claire.martin@email.com", "Chef de projet");
+    Employes employe3 = new Employes("Bernard", "Pierre", "pierre.bernard@email.com", "Analyste");
+    Employes employe4 = new Employes("Lemoine", "Sophie", "sophie.lemoine@email.com", "Responsable RH");
+    Employes employe5 = new Employes("Durand", "Marc", "marc.durand@email.com", "Designer");
+    Employes employe6 = new Employes("Dumetz", "Théotim","theotim.dumetz@eleve.isep.fr","Développeur Java");
+    Employes employe7 = new Employes("Anton-Nixon","Kevin","kevin.anton-nixon@eleve.isep.fr","Développeur Java");
+    Employes employe8 = new Employes("Harault","Micky","micky.harault@eleve.isep.fr","Développeur Java");
+
+    Projets projet1 = new Projets("Développement Application Mobile", LocalDate.of(2025, 1, 15), LocalDate.of(2025, 6, 15));
+    Projets projet2 = new Projets("Refonte du Site Web", LocalDate.of(2025, 2, 1), LocalDate.of(2025, 5, 1));
+    Projets projet3 = new Projets("Mise en place d'un CRM", LocalDate.of(2025, 3, 1), LocalDate.of(2025, 9, 1));
+    Projets projet4 = new Projets("Développement App KANBAN", LocalDate.of(2024, 12, 15), LocalDate.of(2025, 1, 17));
+
 
     @FXML
     private ListView<Employes> employeListView;
@@ -189,6 +203,26 @@ public class MainViewController {
             Projets.suprProjet(projet); // Suppression de la liste globale
             projetsList.remove(projet); // Suppression de la `ObservableList`
             projetsListView.refresh();  // Rafraîchir visuellement la `ListView`
+        }
+    }
+    private void showKanban(Projets projet) {
+        try {
+            // Charger le fichier FXML de la fenêtre Kanban
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("KANBAN.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            // Créer une nouvelle fenêtre avec la scène KANBAN.fxml
+            Stage newStage = new Stage();
+            newStage.setScene(scene);
+            newStage.setTitle("Kanban");
+
+            // Fermer la fenêtre actuelle;
+
+            // Afficher la nouvelle fenêtre Kanban
+            newStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
