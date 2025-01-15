@@ -36,12 +36,12 @@
         <TextArea fx:id="commentairesField" prefHeight="100" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <Label text="Employés" GridPane.rowIndex="5" />
       <Label prefHeight="18.0" prefWidth="74.0" text="Statut" GridPane.rowIndex="6" />
-      <Label prefHeight="18.0" prefWidth="104.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Label fx:id="statutField" prefHeight="18.0" prefWidth="104.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
       <ComboBox prefHeight="26.0" prefWidth="187.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
       <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="115.0" text="Ajouter Employe" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
-      <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="113.0" text="Modifier" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-      <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="171.0" text="Enregistrer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+      <Button onAction="#handleModifier" mnemonicParsing="false" prefHeight="44.0" prefWidth="113.0" text="Modifier" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+      <Button onAction="#handleSave" mnemonicParsing="false" prefHeight="45.0" prefWidth="171.0" text="Enregistrer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
     </children>
 
     <!-- Ajustement des propriétés de la grille -->
