@@ -1,6 +1,7 @@
 package org.example.demo;
 
 import Entreprise.Employes;
+import Entreprise.Projets;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -55,7 +56,10 @@ public class EmployeInfoController {
     }
 
     private void afficherHistorique() {
-        historiqueListView.getItems().setAll(employe.getHistoriqueProjets());
+        historiqueListView.getItems().clear();
+        for (Projets projet : employe.getProjetsAssocies()) {
+            historiqueListView.getItems().add(projet.getNomDeProjet());
+        }
     }
 
     @FXML
