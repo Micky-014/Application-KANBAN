@@ -13,6 +13,7 @@ public class Projets {
     private LocalDate fin;
     private List<Employes> listeEmployes = new ArrayList<Employes>();
     private List<Taches> listeTaches = new ArrayList<>();
+    private HashMap<String,Taches> chercheTaches = new HashMap<>();
     private static List<Projets> listeProjets = new ArrayList<>();
 
     public Projets(String nomDeProjet, LocalDate debut, LocalDate fin) {
@@ -46,7 +47,6 @@ public class Projets {
     public void setFin(LocalDate fin) {
         this.fin = fin;
     }
-
     public static List<Projets> getListeProjets() {
         return listeProjets;
     }
@@ -56,15 +56,28 @@ public class Projets {
     public String getTitre(){
         return nomDeProjet;
     }
-
+    public List<Employes> getEmployes() {
+        return listeEmployes;
+    }
+    public void ajouterEmploye(Employes employe) {
+        listeEmployes.add(employe);
+    }
+    public void supprimerEmploye(Employes employe) {
+        listeEmployes.remove(employe);
+    }
     public void ajouterTache(Taches tache) {
         listeTaches.add(tache);
+        chercheTaches.put(tache.getTitre(), tache);
     }
-
     public void supprimerTache(Taches tache) {
         listeTaches.remove(tache);
     }
-
+    public Taches projetGetTache(String titre) {
+        return chercheTaches.get(titre);
+    }
+    public void suprimerChercheTache(String titre) {
+        chercheTaches.remove(titre);
+    }
     public List<Taches> getTaches(){
         return listeTaches;
     }

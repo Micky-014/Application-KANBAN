@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.AddEmployeAuProjetController" spacing="10" alignment="CENTER" padding="10">
+    <Label text="Ajouter des employés au projet" styleClass="title-label" />
+    <ListView fx:id="employeListView" prefHeight="200" />
+    <Button text="Ajouter au projet" onAction="#handleAjouterEmploye" />
+</VBox>
+

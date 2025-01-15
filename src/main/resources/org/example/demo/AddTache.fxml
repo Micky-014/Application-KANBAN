@@ -22,13 +22,7 @@
 
         <Label text="Priorité" GridPane.columnIndex="0" GridPane.rowIndex="2" />
         <ComboBox fx:id="prioriteComboBox" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="150">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Haute"/>
-                    <String fx:value="Moyenne" />
-                    <String fx:value="Basse" />
-                </FXCollections>
-            </items>
+
         </ComboBox>
 
         <Label text="Date" GridPane.columnIndex="0" GridPane.rowIndex="3" />

@@ -9,7 +9,7 @@
     <ToolBar prefHeight="52.0" prefWidth="482.0">
         <items>
             <Button onAction="#handleAjouterTache" text="Nouvelle Tâche" />
-            <Button text="Liste Employés" />
+            <Button text="Liste Employés" onAction="#handleAjouterEmployeAuProjet"/>
         </items>
     </ToolBar>
 

@@ -26,10 +26,10 @@ public class AddTacheController {
     @FXML
     private ComboBox<String> prioriteComboBox;
 
-    private MainViewController mainController;
+    private KanbanController mainController;
 
     // Méthode pour transmettre une référence au contrôleur principal
-    public void setMainController(MainViewController mainController) {
+    public void setMainController(KanbanController mainController) {
         this.mainController = mainController;
     }
 
@@ -61,7 +61,7 @@ public class AddTacheController {
 
             // Créer une nouvelle tâche
             Taches tache = new Taches(nom, priorite, date, commentaires);
-
+            mainController.ajouterTacheKanban(tache);
             // Ajouter la tâche (logique à définir selon votre application)
             System.out.println("Tâche ajoutée : " + tache);
 
