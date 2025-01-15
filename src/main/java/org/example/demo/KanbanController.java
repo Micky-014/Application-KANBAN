@@ -184,6 +184,7 @@ public class KanbanController {
                     // Passer les données de la tâche au contrôleur
                     infoTacheController.setTache(tache);
 
+                    infoTacheController.initialize();
                     // Créer une nouvelle fenêtre pour afficher les informations de la tâche
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));

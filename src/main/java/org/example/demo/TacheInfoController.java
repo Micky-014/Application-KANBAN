@@ -27,10 +27,21 @@ public class TacheInfoController {
 
     public void setTache(Taches tache) {
         this.tache=tache;
+        if (tache == null) {
+            System.err.println("Erreur : L'objet 'tache' est null !");
+        } else {
+            System.out.println("Titre de la tâche : " + tache.getTitre());
+            nomTacheField.setText(tache.getTitre());
+            prioriteComboBox.getSelectionModel().select(tache.getPriorite());
+            jourField.setText(String.valueOf(tache.getDateLimite().getDayOfMonth()));
+            moisField.setText(String.valueOf(tache.getDateLimite().getMonthValue()));
+            anneeField.setText(String.valueOf(tache.getDateLimite().getYear()));
+            commentairesField.setText(tache.getCommentaires());
+        }
     }
     public void initialize() {
-        // Désactiver l'édition au démarrage
-        setFieldsEditable(false);
+        prioriteComboBox.getItems().addAll("Haute", "Moyenne", "Basse");
+        disableEditing();
     }
     public void setFieldsEditable(boolean editable) {
         nomTacheField.setEditable(editable);
@@ -40,6 +51,7 @@ public class TacheInfoController {
         anneeField.setEditable(editable);
         commentairesField.setEditable(editable);
     }
+
     @FXML
     private void enableEditing() {
         setFieldsEditable(true); // Activer l'édition
