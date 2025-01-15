@@ -55,7 +55,11 @@
         </Tab>
 
         <Tab text="Calendrier">
-            <AnchorPane fx:id="calendrierTab" />
+            <VBox alignment="CENTER" spacing="10" >
+                <Label text="Calendrier des projets et tâches" styleClass="title-label" />
+                <fx:include source="Calendrier.fxml" />
+            </VBox>
         </Tab>
+
     </TabPane>
 </AnchorPane>

@@ -82,4 +82,9 @@ public class  Employes {
     public String getHistoriqueProjets() {
         return historiqueProjets.toString();
     }
+
+    @Override
+    public String toString() {
+        return nom + " " + prenom; // Assurez-vous que "nom" et "prenom" sont définis dans la classe Employes
+    }
 }

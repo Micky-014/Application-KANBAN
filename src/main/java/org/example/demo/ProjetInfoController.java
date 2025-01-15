@@ -81,12 +81,6 @@ public class ProjetInfoController {
     @FXML
     private ListView<String> employeListView;
 
-    private void afficherEmployes() {
-        employeListView.getItems().clear();
-        for (Employes employe : Employes.getListeEmployes()) {
-            employeListView.getItems().add(employe.getNom() + " " + employe.getPrenom());
-        }
-    }
 
     // Appelez cette méthode après l'ajout d'employés
     @FXML
@@ -102,8 +96,6 @@ public class ProjetInfoController {
             stage.setScene(new Scene(root));
             stage.setTitle("Ajouter des employés au projet");
 
-            // Rafraîchir les employés après fermeture de la fenêtre
-            stage.setOnHiding(event -> afficherEmployes());
 
             stage.show();
         } catch (IOException e) {
