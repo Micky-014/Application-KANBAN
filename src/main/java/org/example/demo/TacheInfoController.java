@@ -5,11 +5,13 @@ import Entreprise.Projets;
 import Entreprise.Taches;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.*;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.ContextMenu;
 
 
 import java.awt.*;
@@ -79,7 +81,7 @@ public class TacheInfoController {
                 Label newLabel = new Label(employes.getNom()+" "+employes.getPrenom());
                 // Ajouter des styles ou personnalisation si nécessaire
                 newLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #333;"); // Exemple de style
-
+                enableContextMenu(newLabel, employes);
                 // Ajouter le Label à la VBox
                 employesField.getChildren().add(newLabel);
             }
@@ -134,5 +136,38 @@ public class TacheInfoController {
 
         // Ajouter le Label à la VBox
         employesField.getChildren().add(newLabel);
+        enableContextMenu(newLabel, employe);
     }
+    private void enableContextMenu(Label taskLabel, Employes employe) {
+        // Création du menu contextuel
+        ContextMenu contextMenu = new ContextMenu();
+
+        // Création de l'élément "Supprimer"
+        MenuItem deleteItem = new MenuItem("Supprimer");
+
+        // Ajout du gestionnaire d'événements pour l'action
+        deleteItem.setOnAction(event -> {
+            VBox parentColumn = (VBox) taskLabel.getParent();
+            parentColumn.getChildren().remove(taskLabel);  // Retirer le label de l'interface
+
+            // Supprimer l'employé de la tâche
+            tache.suprEquipe(employe);
+            tache.addEquipeDisponible(employe);  // Ajouter l'employé à la liste des employés disponibles
+
+            // Mettre à jour la ComboBox pour refléter les changements
+            employesComboBox.getItems().clear();
+            employesComboBox.getItems().addAll(tache.getEquipeDisponible());
+
+            System.out.println("Employé supprimé : " + employe.getNom() + " " + employe.getPrenom());
+        });
+
+        // Ajouter l'élément "Supprimer" au menu contextuel
+        contextMenu.getItems().add(deleteItem);
+
+        // Afficher le menu contextuel lorsqu'un clic droit est effectué sur le Label
+        taskLabel.setOnContextMenuRequested(event -> {
+            contextMenu.show(taskLabel, event.getScreenX(), event.getScreenY());
+        });
+    }
+
 }
