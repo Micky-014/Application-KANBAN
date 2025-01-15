@@ -3,136 +3,47 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<SplitPane dividerPositions="0.15361445783132532" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="586.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.ProjetInfoController">
-    <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="360.0">
+<GridPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.ProjetInfoController"
+          hgap="10" vgap="10" alignment="CENTER" stylesheets="@style.css">
+    <children>
+        <Label text="Détails du Projet" GridPane.columnSpan="2" GridPane.halignment="CENTER" styleClass="title-label" />
+
+        <Label text="Nom du projet" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="nomField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <Label text="Date de début" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <HBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="75.0" layoutY="14.0" prefHeight="22.0" prefWidth="148.0" text="Projet" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="14.0">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Label>
-            </children></AnchorPane>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="443.0" prefWidth="298.0">
+                <TextField fx:id="jourDebutField" promptText="JJ" prefWidth="50" />
+                <TextField fx:id="moisDebutField" promptText="MM" prefWidth="50" />
+                <TextField fx:id="anneeDebutField" promptText="AAAA" prefWidth="80" />
+            </children>
+        </HBox>
+
+        <Label text="Date de fin" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <HBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
             <children>
-                <VBox prefHeight="365.0" prefWidth="304.0">
-                    <children>
-                        <Label prefHeight="27.0" prefWidth="144.0" text="Nom du projet">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="nomField" prefHeight="30.0" prefWidth="360.0">
-                            <VBox.margin>
-                                <Insets right="6.0" />
-                            </VBox.margin></TextField>
-                        <AnchorPane prefHeight="60.0" prefWidth="300.0">
-                            <children>
-                                <Label layoutX="28.0" layoutY="5.0" prefHeight="30.0" prefWidth="138.0" text="Date de début" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                    <font>
-                                        <Font size="18.0" />
-                                    </font></Label>
-                                <SplitPane dividerPositions="0.33, 0.66" layoutY="32.0" prefHeight="63.0" prefWidth="304.0">
-                                    <items>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                            <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="5.0" prefHeight="30.0" prefWidth="100.0" text="Jour" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font></Label>
-                                                <TextField fx:id="jourDebutField" alignment="CENTER" layoutY="23.0" prefHeight="26.0" prefWidth="95.0" promptText="XX" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="28.0" />
-                                            </children></AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                            <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="5.0" prefHeight="29.0" prefWidth="92.0" text="Mois" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="moisDebutField" alignment="CENTER" layoutX="-2.0" layoutY="29.0" prefHeight="26.0" prefWidth="95.0" promptText="XX" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="28.0" />
-                                            </children></AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                            <children>
-                                                <TextField fx:id="anneeDebutField" alignment="CENTER" layoutX="-24.0" layoutY="1.0" promptText="XXXX" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="28.0" />
-                                                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="34.0" layoutY="5.0" text="Année" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children></AnchorPane>
-                                    </items>
-                                </SplitPane>
-                            </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="95.0" prefWidth="304.0">
-                            <children>
-                                <Label layoutY="5.0" text="Date de fin" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                    <font>
-                                        <Font size="18.0" />
-                                    </font>
-                                </Label>
-                                <SplitPane dividerPositions="0.33, 0.66" layoutY="27.0" prefHeight="63.0" prefWidth="304.0">
-                                    <items>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                            <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" prefHeight="27.0" prefWidth="106.0" text="Jour">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="jourFinField" alignment="CENTER" layoutX="-23.0" layoutY="27.0" promptText="XX" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="28.0" />
-                                            </children></AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                            <children>
-                                                <Label alignment="CENTER" layoutX="-3.0" prefHeight="18.0" prefWidth="98.0" text="Mois">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="moisFinField" alignment="CENTER" layoutX="-28.0" layoutY="27.0" promptText="XX" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="28.0" />
-                                            </children></AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                            <children>
-                                                <Label alignment="CENTER" prefHeight="18.0" prefWidth="100.0" text="Année">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="anneeFinField" alignment="CENTER" layoutX="-24.0" layoutY="27.0" promptText="XXXX" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="28.0" />
-                                            </children></AnchorPane>
-                                    </items>
-                                </SplitPane>
-                            </children></AnchorPane>
-                  <Label text="ID">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="idLabel" text="Label">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <SplitPane dividerPositions="0.5" prefHeight="69.0" prefWidth="304.0">
-                     <items>
-                            <AnchorPane prefHeight="40.0">
-                           <children>
-                              <Button layoutX="38.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleEdit" prefHeight="42.0" prefWidth="72.0" text="Modifier" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="8.0" />
-                           </children>
-                            </AnchorPane>
-                              <AnchorPane prefHeight="32.0" prefWidth="148.0">
-                           <children>
-                              <Button layoutX="38.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleDelete" text="Supprimer" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="8.0" />
-                           </children>
-                              </AnchorPane>
-                     </items>
-                  </SplitPane>
-                    </children>
-                </VBox>
-            <Button layoutX="126.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="52.0" prefWidth="262.0" text="Enregistrer" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="376.0" />
-            <Button layoutX="126.0" layoutY="443.0" mnemonicParsing="false" text="Ouvrir" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="434.0" onAction="#handleKanban" />
-            </children></AnchorPane>
-    </items>
-</SplitPane>
+                <TextField fx:id="jourFinField" promptText="JJ" prefWidth="50" />
+                <TextField fx:id="moisFinField" promptText="MM" prefWidth="50" />
+                <TextField fx:id="anneeFinField" promptText="AAAA" prefWidth="80" />
+            </children>
+        </HBox>
+
+        <Label text="ID" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <Label fx:id="idLabel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+        <Label text="Historique" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.halignment="CENTER" />
+        <ListView fx:id="historiqueListView" GridPane.columnSpan="2" GridPane.rowIndex="6" prefHeight="150" />
+
+        <HBox spacing="10" GridPane.columnSpan="2" GridPane.rowIndex="7" alignment="CENTER">
+            <children>
+                <Button text="Modifier" onAction="#handleEdit" />
+                <Button text="Supprimer" onAction="#handleDelete" />
+                <Button text="Ouvrir" onAction="#handleKanban" />
+            </children>
+        </HBox>
+
+        <Button text="Enregistrer" onAction="#handleSave" GridPane.columnSpan="2" GridPane.rowIndex="8" GridPane.halignment="CENTER" />
+    </children>
+</GridPane>

@@ -6,7 +6,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -24,6 +29,7 @@ public class KanbanController {
 
     private Projets projet;
     private List<Taches> taches;
+
     public void handleAjouterTache() {
         try {
             // Charger la fenêtre d'ajout de tache
@@ -39,6 +45,7 @@ public class KanbanController {
             e.printStackTrace();
         }
     }
+
     public void setProjet(Projets projet) {
         this.projet = projet;
         initializeKanban();
@@ -49,25 +56,76 @@ public class KanbanController {
         if (projet != null) {
             taches = projet.getTaches();
             for (Taches tache : taches) {
-                if (tache.getStatut().equals("A faire")){
-                    // Ajouter un Label avec le texte dans le conteneur dynamique
-                    Label tacheLabel = new Label(tache.getTitre());
-                    tacheLabel.setStyle("-fx-font-size: 14px; -fx-padding: 5px;"); // Ajoutez du style si nécessaire
-                    tacheAFaire.getChildren().add(tacheLabel);
+                Label tacheLabel = new Label(tache.getTitre());
+                tacheLabel.setStyle("-fx-font-size: 14px; -fx-padding: 5px;");
+
+                switch (tache.getStatut()) {
+                    case "A faire" -> tacheAFaire.getChildren().add(tacheLabel);
+                    case "En cours" -> tacheEnCours.getChildren().add(tacheLabel);
+                    case "Terminée" -> tacheTerminee.getChildren().add(tacheLabel);
                 }
-                else if (tache.getStatut().equals("En cours")){
-                    Label tacheLabel = new Label(tache.getTitre());
-                    tacheLabel.setStyle("-fx-font-size: 14px; -fx-padding: 5px;"); // Ajoutez du style si nécessaire
-                    tacheEnCours.getChildren().add(tacheLabel);
-                }
-                else if (tache.getStatut().equals("Terminée")){
-                    Label tacheLabel = new Label(tache.getTitre());
-                    tacheLabel.setStyle("-fx-font-size: 14px; -fx-padding: 5px;"); // Ajoutez du style si nécessaire
-                    tacheTerminee.getChildren().add(tacheLabel);
-                }
+
+                // Activer le drag-and-drop et le menu contextuel pour chaque tâche
+                enableDragAndDrop(tacheLabel);
+                enableContextMenu(tacheLabel);
             }
-            System.out.println("Projet dans Kanban : " + projet.getNomDeProjet());
-            // Initialisez ici les éléments de votre vue Kanban avec les données du projet.
         }
+    }
+
+    private void enableDragAndDrop(Label taskLabel) {
+        VBox[] columns = {tacheAFaire, tacheEnCours, tacheTerminee};
+
+        taskLabel.setOnDragDetected(event -> {
+            Dragboard db = taskLabel.startDragAndDrop(TransferMode.MOVE);
+            ClipboardContent content = new ClipboardContent();
+            content.putString(taskLabel.getText());
+            db.setContent(content);
+            event.consume();
+        });
+
+        for (VBox column : columns) {
+            column.setOnDragOver(event -> {
+                if (event.getGestureSource() != column && event.getDragboard().hasString()) {
+                    event.acceptTransferModes(TransferMode.MOVE);
+                }
+                event.consume();
+            });
+
+            column.setOnDragDropped(event -> {
+                Dragboard db = event.getDragboard();
+                if (db.hasString()) {
+                    Label newTaskLabel = new Label(db.getString());
+                    newTaskLabel.setStyle("-fx-font-size: 14px; -fx-padding: 5px;");
+                    column.getChildren().add(newTaskLabel);
+
+                    VBox sourceColumn = (VBox) taskLabel.getParent();
+                    sourceColumn.getChildren().remove(taskLabel);
+
+                    // Mettre à jour la logique métier (statut de la tâche)
+                    if (column == tacheAFaire) {
+                        System.out.println("Statut mis à jour : A faire");
+                    } else if (column == tacheEnCours) {
+                        System.out.println("Statut mis à jour : En cours");
+                    } else if (column == tacheTerminee) {
+                        System.out.println("Statut mis à jour : Terminée");
+                    }
+                }
+                event.setDropCompleted(true);
+                event.consume();
+            });
+        }
+    }
+
+    private void enableContextMenu(Label taskLabel) {
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem deleteItem = new MenuItem("Supprimer");
+        deleteItem.setOnAction(event -> {
+            VBox parentColumn = (VBox) taskLabel.getParent();
+            parentColumn.getChildren().remove(taskLabel);
+            System.out.println("Tâche supprimée : " + taskLabel.getText());
+        });
+        contextMenu.getItems().add(deleteItem);
+
+        taskLabel.setOnContextMenuRequested(event -> contextMenu.show(taskLabel, event.getScreenX(), event.getScreenY()));
     }
 }

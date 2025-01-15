@@ -18,7 +18,7 @@ public class  Employes {
         this.prenom = prenom;
         this.contact = contact;
         this.role = role;
-        this.id = nombreID++;
+        this.id = 1+nombreID++;
         this.historiqueProjets= new ArrayList<>();
         ListeEmployes.add(this);
     }

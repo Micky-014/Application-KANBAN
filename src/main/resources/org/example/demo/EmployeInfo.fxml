@@ -4,89 +4,40 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<SplitPane dividerPositions="0.15" orientation="VERTICAL" prefHeight="475.0" prefWidth="300.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.EmployeInfoController">
-    <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="360.0">
+<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.EmployeInfoController"
+          hgap="10" vgap="10" alignment="CENTER" stylesheets="@style.css">
+    <children>
+        <Label text="Détails de l'Employé" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+            <font>
+                <Font size="20" />
+            </font>
+        </Label>
+
+        <Label text="Nom" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="nomField" GridPane.columnIndex="1" GridPane.rowIndex="1" editable="false" />
+
+        <Label text="Prénom" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="prenomField" GridPane.columnIndex="1" GridPane.rowIndex="2" editable="false" />
+
+        <Label text="Contact" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField fx:id="contactField" GridPane.columnIndex="1" GridPane.rowIndex="3" editable="false" />
+
+        <Label text="Rôle" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <TextField fx:id="roleField" GridPane.columnIndex="1" GridPane.rowIndex="4" editable="false" />
+
+        <Label text="ID" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+        <Label fx:id="idLabel" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+        <Label text="Historique des Projets" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.halignment="CENTER" />
+        <ListView fx:id="historiqueListView" GridPane.columnSpan="2" GridPane.rowIndex="7" prefHeight="150" />
+
+        <HBox spacing="10" GridPane.columnSpan="2" GridPane.rowIndex="8" alignment="CENTER">
             <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="6.0" prefHeight="30.0" prefWidth="153.0" text="Employé" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="6.0">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Label>
+                <Button text="Modifier" onAction="#handleEdit" />
+                <Button text="Supprimer" onAction="#handleDelete" />
             </children>
-        </AnchorPane>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="389.0" prefWidth="298.0">
-            <children>
-                <VBox prefHeight="399.0" prefWidth="300.0">
-                    <children>
-                        <Label prefHeight="18.0" prefWidth="62.0" text="Nom">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="nomField" prefHeight="27.0" prefWidth="301.0" editable="false">
-                            <font>
-                                <Font name="System Italic" size="16.0" />
-                            </font>
-                        </TextField>
-                        <Label text="Prénom">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="prenomField" prefHeight="27.0" prefWidth="301.0" editable="false">
-                            <font>
-                                <Font name="System Italic" size="16.0" />
-                            </font>
-                        </TextField>
-                        <Label text="Contact">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="contactField" prefHeight="27.0" prefWidth="301.0" editable="false">
-                            <font>
-                                <Font name="System Italic" size="16.0" />
-                            </font>
-                        </TextField>
-                        <Label text="Rôle">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="roleField" editable="false">
-                            <font>
-                                <Font name="System Italic" size="16.0" />
-                            </font>
-                        </TextField>
-                        <Label text="ID">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="idLabel">
-                            <font>
-                                <Font name="System Italic" size="16.0" />
-                            </font>
-                        </Label>
-                        <!-- SplitPane with three equal sections -->
-                        <SplitPane dividerPositions="0.5" minHeight="-Infinity" prefHeight="51.0" prefWidth="300.0">
-                            <items>
-                                <AnchorPane prefHeight="58.0" prefWidth="100.0">
-                           <children>
-                              <Button layoutX="22.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleEdit" text="Modifier" AnchorPane.bottomAnchor="3.200000000000003" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="4.0" />
-                           </children>
-                                </AnchorPane>
-                                <AnchorPane prefHeight="58.0" prefWidth="100.0">
-                           <children>
-                              <Button layoutX="16.0" layoutY="4.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="114.0" text="Supprimer" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="4.0" onAction="#handleDelete" />
-                           </children></AnchorPane>
-                            </items>
-                        </SplitPane>
-                  <Button mnemonicParsing="false" onAction="#handleSave" prefHeight="49.0" prefWidth="301.0" text="Enregistrer" />
-                    </children>
-                </VBox>
-            </children>
-        </AnchorPane>
-    </items>
-</SplitPane>
+        </HBox>
+
+        <Button text="Enregistrer" onAction="#handleSave" GridPane.columnSpan="2" GridPane.rowIndex="9" GridPane.halignment="CENTER" />
+    </children>
+</GridPane>

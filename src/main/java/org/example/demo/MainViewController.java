@@ -23,7 +23,7 @@ public class MainViewController {
     Employes employe4 = new Employes("Lemoine", "Sophie", "sophie.lemoine@email.com", "Responsable RH");
     Employes employe5 = new Employes("Durand", "Marc", "marc.durand@email.com", "Designer");
     Employes employe6 = new Employes("Dumetz", "Théotim","theotim.dumetz@eleve.isep.fr","Développeur Java");
-    Employes employe7 = new Employes("Anton-Nixon","Kevin","kevin.anton-nixon@eleve.isep.fr","Développeur Java");
+    Employes employe7 = new Employes("Anton Nixon","Kevin","kevin.anton-nixon@eleve.isep.fr","Développeur Java");
     Employes employe8 = new Employes("Harault","Micky","micky.harault@eleve.isep.fr","Développeur Java");
 
     Projets projet1 = new Projets("Développement Application Mobile", LocalDate.of(2025, 1, 15), LocalDate.of(2025, 6, 15));
@@ -131,7 +131,7 @@ public class MainViewController {
                 if (empty || projet == null) {
                     setText(null);
                 } else {
-                    setText(projet.getNomDeProjet() + " " + projet.getId());
+                    setText(projet.getId() + " - " + projet.getNomDeProjet());
                 }
             }
         });

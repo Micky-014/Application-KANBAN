@@ -2,60 +2,32 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
 
-<SplitPane dividerPositions="0.15361445783132532" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="329.0" prefWidth="300.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.AddEmployeController">
-   <items>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="360.0">
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="6.0" prefHeight="30.0" prefWidth="153.0" text="Nouvel Employé" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="6.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="222.0" prefWidth="298.0">
-         <children>
-            <VBox prefHeight="232.0" prefWidth="300.0">
-               <children>
-                  <Label prefHeight="18.0" prefWidth="62.0" text="Nom">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="nomField" prefHeight="30.0" prefWidth="360.0" />
-                  <Label text="Prénom">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="prenomField" prefHeight="30.0" prefWidth="360.0" />
-                  <Label text="Contact">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="contactField" prefHeight="30.0" prefWidth="294.0" />
-                  <Label text="Rôle">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="roleField" prefHeight="30.0" />
-                  <AnchorPane prefHeight="54.0" prefWidth="300.0">
-                     <children>
-                        <Button fx:id="ajouterButton" layoutX="61.0" layoutY="7.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="178.0" styleClass="button1" text="Ajouter Employé" onAction="#handleAjouterEmploye">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </VBox>
-         </children>
-      </AnchorPane>
-   </items>
-</SplitPane>
+<?import javafx.scene.text.Font?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.AddEmployeController"
+          alignment="CENTER" hgap="10" vgap="10" stylesheets="@style.css">
 
+   <Label text="Nouvel Employé" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+      <font>
+         <Font size="20" />
+      </font>
+   </Label>
+
+   <Label text="Nom" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+   <TextField fx:id="nomField" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="200"/>
+
+   <Label text="Prénom" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+   <TextField fx:id="prenomField" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="200"/>
+
+   <Label text="Contact" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+   <TextField fx:id="contactField" GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="200"/>
+
+   <Label text="Rôle" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+   <TextField fx:id="roleField" GridPane.columnIndex="1" GridPane.rowIndex="4" prefWidth="200"/>
+
+   <Button fx:id="ajouterButton" text="Ajouter Employé" onAction="#handleAjouterEmploye"
+           GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.halignment="CENTER"/>
+
+   <Label fx:id="messageLabel" text="" styleClass="error-label" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.halignment="CENTER"/>
+</GridPane>

@@ -2,10 +2,7 @@ package org.example.demo;
 
 import Entreprise.Projets;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
@@ -62,6 +59,8 @@ public class ProjetInfoController {
             moisFinField.setText(String.valueOf(projet.getDebut().getMonthValue()));
             anneeFinField.setText(String.valueOf(projet.getDebut().getYear()));
             idLabel.setText(String.valueOf(projet.getId()));
+
+            afficherHistorique();
         }
         nomField.setEditable(false);
         jourDebutField.setEditable(false);
@@ -73,6 +72,10 @@ public class ProjetInfoController {
 
     }
 
+    private void afficherHistorique() {
+        // Exemple : Ajouter un historique fictif
+        historiqueListView.getItems().addAll("Étape 1 : Analyse", "Étape 2 : Développement", "Étape 3 : Tests");
+    }
 
     @FXML
     private void handleEdit() {
@@ -142,4 +145,6 @@ public class ProjetInfoController {
             stage.close(); // Fermer la fenêtre actuelle si nécessaire
         }
     }
+
+
 }

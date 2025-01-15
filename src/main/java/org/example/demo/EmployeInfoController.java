@@ -2,10 +2,7 @@ package org.example.demo;
 
 import Entreprise.Employes;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class EmployeInfoController {
 
@@ -48,6 +45,7 @@ public class EmployeInfoController {
             contactField.setText(employe.getContact());
             roleField.setText(employe.getRole());
             idLabel.setText(String.valueOf(employe.getId()));
+            afficherHistorique();
         }
         nomField.setEditable(false);
         prenomField.setEditable(false);
@@ -56,9 +54,9 @@ public class EmployeInfoController {
 
     }
 
-    //private void afficherHistorique() {
-        //historiqueListView.getItems().setAll(employe.getHistoriqueProjets());
-    //}
+    private void afficherHistorique() {
+        historiqueListView.getItems().setAll(employe.getHistoriqueProjets());
+    }
 
     @FXML
     private void handleEdit() {
@@ -101,11 +99,22 @@ public class EmployeInfoController {
     @FXML
     private void handleDelete() {
         if (employe != null && mainController != null) {
-            mainController.deleteEmployeFromList(employe);
-            afficherMessage("Suppression réussie", "L'employé a été supprimé.");
-            // Fermer la fenêtre actuelle
-            idLabel.getScene().getWindow().hide();
+            if (showConfirmationDialog("Confirmation", "Voulez-vous vraiment supprimer cet employé ?")) {
+                mainController.deleteEmployeFromList(employe);
+                afficherMessage("Suppression réussie", "L'employé a été supprimé.");
+                // Fermer la fenêtre actuelle
+                idLabel.getScene().getWindow().hide();
+            }
         }
+    }
+
+    private boolean showConfirmationDialog(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        return alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK;
     }
 }
 
