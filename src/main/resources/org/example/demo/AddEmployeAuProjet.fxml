@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.AddEmployeAuProjetController" spacing="10" alignment="CENTER" padding="10">
+<VBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.AddEmployeAuProjetController" spacing="10" alignment="CENTER">
     <Label text="Ajouter des employés au projet" styleClass="title-label" />
-    <ListView fx:id="employeListView" prefHeight="200" />
+    <ListView fx:id="employeListView" prefHeight="200.0" />
     <Button text="Ajouter au projet" onAction="#handleAjouterEmploye" />
 </VBox>
 

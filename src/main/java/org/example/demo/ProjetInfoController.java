@@ -1,11 +1,16 @@
 package org.example.demo;
 
+import Entreprise.Employes;
 import Entreprise.Projets;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class ProjetInfoController {
@@ -71,6 +76,41 @@ public class ProjetInfoController {
         moisFinField.setEditable(false);
         anneeFinField.setEditable(false);
 
+    }
+
+    @FXML
+    private ListView<String> employeListView;
+
+
+    // Appelez cette méthode après l'ajout d'employés
+    @FXML
+    private void handleAjouterEmployeAuProjet() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/demo/AddEmployeAuProjet.fxml"));
+            Parent root = loader.load();
+
+            AddEmployeAuProjetController controller = loader.getController();
+            controller.setProjet(projet);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Ajouter des employés au projet");
+
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showError("Erreur", "Impossible d'ouvrir la fenêtre d'ajout d'employés.");
+        }
+    }
+
+
+    private void showError(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     private void afficherHistorique() {

@@ -55,23 +55,6 @@ public class KanbanController {
         initializeKanban();
     }
 
-    @FXML
-    private void handleAjouterEmployeAuProjet() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AjouterEmployeAuProjet.fxml"));
-            Parent root = loader.load();
-
-            AddEmployeAuProjetController controller = loader.getController();
-            controller.setProjet(projet); // Transmettre le projet actuel
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Ajouter des employés au projet");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     private void initializeKanban() {
@@ -136,6 +119,7 @@ public class KanbanController {
                     // Créer une nouvelle étiquette dans la colonne cible
                     Label newTaskLabel = new Label(nomTache);
                     newTaskLabel.setStyle("-fx-font-size: 14px; -fx-padding: 5px;");
+                    enableContextMenu(newTaskLabel);
                     column.getChildren().add(newTaskLabel);  // Ajouter à la colonne cible
 
                     // Récupérer l'étiquette à partir de l'événement drag-and-drop
@@ -164,6 +148,8 @@ public class KanbanController {
                 event.consume();
             });
         }
+        // Activer le double-clic sur le label
+        enableDoubleClick(taskLabel);
     }
 
     private void enableContextMenu(Label taskLabel) {
@@ -180,5 +166,35 @@ public class KanbanController {
         contextMenu.getItems().add(deleteItem);
 
         taskLabel.setOnContextMenuRequested(event -> contextMenu.show(taskLabel, event.getScreenX(), event.getScreenY()));
+    }
+
+    private void enableDoubleClick(Label taskLabel) {
+        taskLabel.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) { // Vérifie si c'est un double-clic
+                try {
+                    // Charger la vue InfoTache.fxml
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("TacheInfo.fxml"));
+                    Parent root = loader.load();
+
+                    // Récupérer le contrôleur de la vue InfoTache
+                    TacheInfoController infoTacheController = loader.getController();
+
+                    // Récupérer la tâche associée à ce label
+                    Taches tache = projet.projetGetTache(taskLabel.getText());
+
+                    // Passer les données de la tâche au contrôleur
+                    infoTacheController.setTache(tache);
+
+                    infoTacheController.initialize();
+                    // Créer une nouvelle fenêtre pour afficher les informations de la tâche
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.setTitle("Informations sur la Tâche");
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
