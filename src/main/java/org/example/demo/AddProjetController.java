@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
+import javafx.scene.control.Alert;
 
 public class AddProjetController {
 
@@ -56,26 +57,19 @@ public class AddProjetController {
         }
 
         try {
-            // Convertir les champs de date en entiers pour validation
-            int jourDebutInt = Integer.parseInt(jourDebut);
-            int moisDebutInt = Integer.parseInt(moisDebut);
-            int anneeDebutInt = Integer.parseInt(anneeDebut);
-            int jourFinInt = Integer.parseInt(jourFin);
-            int moisFinInt = Integer.parseInt(moisFin);
-            int anneeFinInt = Integer.parseInt(anneeFin);
+            // Convertir et valider les dates
+            LocalDate debut = parseDate(jourDebut, moisDebut, anneeDebut);
+            LocalDate fin = parseDate(jourFin, moisFin, anneeFin);
 
-            // Validation des dates (simple)
-            if (jourDebutInt < 1 || jourDebutInt > 31 || moisDebutInt < 1 || moisDebutInt > 12 || anneeDebutInt < 1900
-                    || jourFinInt < 1 || jourFinInt > 31 || moisFinInt < 1 || moisFinInt > 12 || anneeFinInt < 1900) {
-                System.out.println("Veuillez entrer des dates valides !");
+            if (debut.isAfter(fin)) {
+                showAlert("Erreur", "La date de début doit être avant la date de fin.");
                 return;
             }
-            LocalDate debut = LocalDate.of(anneeDebutInt, moisDebutInt, jourDebutInt);
-            LocalDate fin = LocalDate.of(anneeFinInt, moisFinInt, jourFinInt);
+
 
             // Ajouter le projet à la liste principale
             if (mainController != null) {
-                mainController.addProjetToList(nomProjet,debut,fin);
+                mainController.addProjetToList(nomProjet, debut, fin);
             }
 
             // Fermer la fenêtre actuelle
@@ -83,7 +77,33 @@ public class AddProjetController {
             stage.close();
 
         } catch (NumberFormatException e) {
-            System.out.println("Veuillez entrer des nombres valides pour les dates !");
+            showAlert("Erreur", "Veuillez entrer des nombres valides pour les dates.");
+        } catch (IllegalArgumentException e) {
+            showAlert("Erreur", e.getMessage());
         }
+    }
+
+    private LocalDate parseDate(String jour, String mois, String annee) {
+        try {
+            int jourInt = Integer.parseInt(jour);
+            int moisInt = Integer.parseInt(mois);
+            int anneeInt = Integer.parseInt(annee);
+
+            if (jourInt < 1 || jourInt > 31 || moisInt < 1 || moisInt > 12 || anneeInt < 1900) {
+                throw new IllegalArgumentException("Veuillez entrer une date valide.");
+            }
+
+            return LocalDate.of(anneeInt, moisInt, jourInt);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Les champs de date doivent contenir uniquement des chiffres.");
+        }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

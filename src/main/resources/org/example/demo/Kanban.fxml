@@ -1,103 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.HelloController">
-    <ToolBar nodeOrientation="RIGHT_TO_LEFT">
+<VBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.KanbanController" stylesheets="@style.css" spacing="10" alignment="CENTER">
+    <ToolBar prefHeight="52.0" prefWidth="482.0">
         <items>
-            <Button onAction="#onHelloButtonClick" prefHeight="52.0" prefWidth="116.0" text="Nouvelle Tâche" />
-         <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="116.0" text="Liste Employés" />
+            <Button onAction="#handleAjouterTache" text="Nouvelle Tâche" />
+            <Button text="Liste Employés" />
         </items>
     </ToolBar>
-    <HBox VBox.vgrow="ALWAYS">
-        <children>
-            <AnchorPane prefWidth="62.0">
-                <children>
-                    <ToolBar orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                        <items>
-                            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="52.0" text="Projets" />
-                        </items>
-                    </ToolBar>
-                </children>
-            </AnchorPane>
-            <AnchorPane HBox.hgrow="ALWAYS">
-                <children>
-                    <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                        <children>
-                            <SplitPane dividerPositions="0.33, 0.66" prefHeight="50.0">
-                                <items>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                        <children>
 
-                                            <Label fx:id="welcomeText" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="10.0" text="A faire" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                <font>
-                                                    <Font size="18.0" />
-                                                </font>
-                                            </Label>
-                                        </children>
-                                    </AnchorPane>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                        <children>
-                                            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="10.0" text="En cours" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                <font>
-                                                    <Font size="18.0" />
-                                                </font>
-                                            </Label>
-                                        </children>
-                                    </AnchorPane>
-                                    <AnchorPane prefHeight="158.0" prefWidth="206.0">
-                                        <children>
-                                            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="10.0" text="Terminée" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                <font>
-                                                    <Font size="18.0" />
-                                                </font>
-                                            </Label>
-                                        </children>
-                                    </AnchorPane>
-                                </items>
-                            </SplitPane>
-                            <SplitPane dividerPositions="0.33, 0.66" layoutY="49.0">
-                                <items>
-                           <VBox>
-                              <children>
-                                          <AnchorPane minHeight="800.0" minWidth="0.0">
-                                              <cursor>
-                                                  <Cursor fx:constant="H_RESIZE" />
-                                              </cursor>
-                                 </AnchorPane>
-                              </children>
-                           </VBox>
-                           <VBox>
-                              <children>
-                                          <AnchorPane>
-                                              <cursor>
-                                                  <Cursor fx:constant="H_RESIZE" />
-                                              </cursor>
-                                 </AnchorPane>
-                              </children>
-                           </VBox>
-                           <VBox>
-                              <children>
-                                          <AnchorPane>
-                                              <cursor>
-                                                  <Cursor fx:constant="H_RESIZE" />
-                                              </cursor>
-                                 </AnchorPane>
-                              </children>
-                           </VBox>
-                                </items>
-                            </SplitPane>
-                        </children>
-                    </VBox>
-                </children>
-            </AnchorPane>
-        </children>
+    <HBox spacing="10" alignment="CENTER" VBox.vgrow="ALWAYS">
+        <VBox alignment="CENTER" prefWidth="160.0" spacing="10">
+            <Label text="À faire" styleClass="column-title" />
+            <VBox fx:id="tacheAFaire" styleClass="kanban-column" prefHeight="600.0" prefWidth="150.0" />
+        </VBox>
+        <VBox alignment="CENTER" prefWidth="160.0" spacing="10">
+            <Label text="En cours" styleClass="column-title" />
+            <VBox fx:id="tacheEnCours" styleClass="kanban-column" prefHeight="600.0" prefWidth="150.0" />
+        </VBox>
+        <VBox alignment="CENTER" prefWidth="160.0" spacing="10">
+            <Label text="Terminée" styleClass="column-title" />
+            <VBox fx:id="tacheTerminee" styleClass="kanban-column" prefHeight="600.0" prefWidth="150.0" />
+        </VBox>
     </HBox>
-    <opaqueInsets>
-        <Insets />
-    </opaqueInsets>
 </VBox>

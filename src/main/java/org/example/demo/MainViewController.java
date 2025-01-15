@@ -2,6 +2,7 @@ package org.example.demo;
 
 import Entreprise.Employes;
 import Entreprise.Projets;
+import Entreprise.Taches;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,7 +23,7 @@ public class MainViewController {
     Employes employe4 = new Employes("Lemoine", "Sophie", "sophie.lemoine@email.com", "Responsable RH");
     Employes employe5 = new Employes("Durand", "Marc", "marc.durand@email.com", "Designer");
     Employes employe6 = new Employes("Dumetz", "Théotim","theotim.dumetz@eleve.isep.fr","Développeur Java");
-    Employes employe7 = new Employes("Anton-Nixon","Kevin","kevin.anton-nixon@eleve.isep.fr","Développeur Java");
+    Employes employe7 = new Employes("Anton Nixon","Kevin","kevin.anton-nixon@eleve.isep.fr","Développeur Java");
     Employes employe8 = new Employes("Harault","Micky","micky.harault@eleve.isep.fr","Développeur Java");
 
     Projets projet1 = new Projets("Développement Application Mobile", LocalDate.of(2025, 1, 15), LocalDate.of(2025, 6, 15));
@@ -30,6 +31,10 @@ public class MainViewController {
     Projets projet3 = new Projets("Mise en place d'un CRM", LocalDate.of(2025, 3, 1), LocalDate.of(2025, 9, 1));
     Projets projet4 = new Projets("Développement App KANBAN", LocalDate.of(2024, 12, 15), LocalDate.of(2025, 1, 17));
 
+    Taches tache1 = new Taches("Rédaction du rapport", "Haute", LocalDate.of(2025, 1, 20), "Doit inclure les données les plus récentes.");
+    Taches tache2 = new Taches("Préparation de la présentation", "Moyenne", LocalDate.of(2025, 1, 22), "Inclure les graphiques pour le projet.");
+    Taches tache3 = new Taches("Révision du code", "Basse", LocalDate.of(2025, 1, 25), "Vérifier les bugs et améliorer la lisibilité.");
+    Taches tache4 = new Taches("Réunion avec le client", "Haute", LocalDate.of(2025, 1, 18), "Confirmer les besoins et finaliser les exigences.");
 
     @FXML
     private ListView<Employes> employeListView;
@@ -97,6 +102,10 @@ public class MainViewController {
 
     @FXML
     public void initialize() {
+        projet4.ajouterTache(tache1);
+        projet4.ajouterTache(tache2);
+        projet4.ajouterTache(tache3);
+        projet4.ajouterTache(tache4);
         employeList.addAll(Employes.getListeEmployes());
         employeListView.setItems(employeList); // Assurez-vous que la liste observable est définie ici.
 
@@ -122,7 +131,7 @@ public class MainViewController {
                 if (empty || projet == null) {
                     setText(null);
                 } else {
-                    setText(projet.getNomDeProjet() + " " + projet.getId());
+                    setText(projet.getId() + " - " + projet.getNomDeProjet());
                 }
             }
         });
@@ -209,12 +218,16 @@ public class MainViewController {
         try {
             // Charger le fichier FXML de la fenêtre Kanban
             FXMLLoader loader = new FXMLLoader(getClass().getResource("KANBAN.fxml"));
-            Scene scene = new Scene(loader.load());
+            Parent root = loader.load();
+
+            // Récupérer le contrôleur et lui transmettre le projet
+            KanbanController controller = loader.getController();
+            controller.setProjet(projet);
 
             // Créer une nouvelle fenêtre avec la scène KANBAN.fxml
             Stage newStage = new Stage();
-            newStage.setScene(scene);
-            newStage.setTitle("Kanban");
+            newStage.setScene(new Scene(root));
+            newStage.setTitle("Kanban - " + projet.getNomDeProjet());
 
             // Afficher la nouvelle fenêtre Kanban
             newStage.show();
@@ -223,4 +236,5 @@ public class MainViewController {
             e.printStackTrace();
         }
     }
+
 }

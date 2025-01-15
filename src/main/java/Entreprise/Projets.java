@@ -16,7 +16,7 @@ public class Projets {
     private static List<Projets> listeProjets = new ArrayList<>();
 
     public Projets(String nomDeProjet, LocalDate debut, LocalDate fin) {
-        this.id = nombreID++;
+        this.id = 1+nombreID++;
         this.nomDeProjet = nomDeProjet;
         this.debut = debut;
         this.fin = fin;
@@ -63,5 +63,9 @@ public class Projets {
 
     public void supprimerTache(Taches tache) {
         listeTaches.remove(tache);
+    }
+
+    public List<Taches> getTaches(){
+        return listeTaches;
     }
 }
