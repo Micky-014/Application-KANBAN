@@ -38,8 +38,8 @@ public class KanbanController {
 
             AddTacheController addTacheController = loader.getController();
 
+            // Transmettre une référence à ce contrôleur principal
             addTacheController.setMainController(this);
-
             // Créer une nouvelle fenêtre pour la tâche
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -95,17 +95,20 @@ public class KanbanController {
         }
     }
 
-    public void ajouterTacheKanban(Taches tache){
-        Label tacheLabel= new Label(tache.getTitre());
-        tacheLabel.setStyle("-fx-font-size: 14px; -fx-padding: 5px");
+    public void ajouterTacheKanban(Taches tache) {
+        Label tacheLabel = new Label(tache.getTitre());
+        tacheLabel.setStyle("-fx-font-size: 14px; -fx-padding: 5px;");
 
+        // Ajouter la tâche dans la colonne appropriée
         tacheAFaire.getChildren().add(tacheLabel);
 
+        // Activer le drag-and-drop et le menu contextuel
         enableDragAndDrop(tacheLabel);
         enableContextMenu(tacheLabel);
 
-        System.out.println("Tache ajoutée" + tache);
+        System.out.println("Tâche ajoutée dans l'interface via le contrôleur principal : " + tache);
     }
+
 
     private void enableDragAndDrop(Label taskLabel) {
         VBox[] columns = {tacheAFaire, tacheEnCours, tacheTerminee};
@@ -129,19 +132,31 @@ public class KanbanController {
             column.setOnDragDropped(event -> {
                 Dragboard db = event.getDragboard();
                 if (db.hasString()) {
-                    Label newTaskLabel = new Label(db.getString());
+                    String nomTache = db.getString();
+                    // Créer une nouvelle étiquette dans la colonne cible
+                    Label newTaskLabel = new Label(nomTache);
                     newTaskLabel.setStyle("-fx-font-size: 14px; -fx-padding: 5px;");
-                    column.getChildren().add(newTaskLabel);
+                    column.getChildren().add(newTaskLabel);  // Ajouter à la colonne cible
 
-                    VBox sourceColumn = (VBox) taskLabel.getParent();
-                    sourceColumn.getChildren().remove(taskLabel);
+                    // Récupérer l'étiquette à partir de l'événement drag-and-drop
+                    Label taskLabelDrag = (Label) event.getGestureSource();  // Cela récupère l'étiquette glissée
+
+                    // Supprimer l'étiquette de la colonne d'origine
+                    VBox sourceColumn = (VBox) taskLabelDrag.getParent();
+                    sourceColumn.getChildren().remove(taskLabelDrag);
+
+                    enableDragAndDrop(newTaskLabel); // Réactiver l'événement de drag sur la nouvelle étiquette
 
                     // Mettre à jour la logique métier (statut de la tâche)
+                    Taches tache = projet.projetGetTache(nomTache);
                     if (column == tacheAFaire) {
+                        tache.setStatut("A faire");
                         System.out.println("Statut mis à jour : A faire");
                     } else if (column == tacheEnCours) {
+                        tache.setStatut("En cours");
                         System.out.println("Statut mis à jour : En cours");
                     } else if (column == tacheTerminee) {
+                        tache.setStatut("Terminée");
                         System.out.println("Statut mis à jour : Terminée");
                     }
                 }
