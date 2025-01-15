@@ -164,6 +164,8 @@ public class KanbanController {
                 event.consume();
             });
         }
+        // Activer le double-clic sur le label
+        enableDoubleClick(taskLabel);
     }
 
     private void enableContextMenu(Label taskLabel) {
@@ -180,5 +182,34 @@ public class KanbanController {
         contextMenu.getItems().add(deleteItem);
 
         taskLabel.setOnContextMenuRequested(event -> contextMenu.show(taskLabel, event.getScreenX(), event.getScreenY()));
+    }
+
+    private void enableDoubleClick(Label taskLabel) {
+        taskLabel.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) { // Vérifie si c'est un double-clic
+                try {
+                    // Charger la vue InfoTache.fxml
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("TacheInfo.fxml"));
+                    Parent root = loader.load();
+
+                    // Récupérer le contrôleur de la vue InfoTache
+                    TacheInfoController infoTacheController = loader.getController();
+
+                    // Récupérer la tâche associée à ce label
+                    Taches tache = projet.projetGetTache(taskLabel.getText());
+
+                    // Passer les données de la tâche au contrôleur
+                    infoTacheController.setTache(tache);
+
+                    // Créer une nouvelle fenêtre pour afficher les informations de la tâche
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.setTitle("Informations sur la Tâche");
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
