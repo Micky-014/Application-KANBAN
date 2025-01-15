@@ -119,6 +119,7 @@ public class KanbanController {
                     // Créer une nouvelle étiquette dans la colonne cible
                     Label newTaskLabel = new Label(nomTache);
                     newTaskLabel.setStyle("-fx-font-size: 14px; -fx-padding: 5px;");
+                    enableContextMenu(newTaskLabel);
                     column.getChildren().add(newTaskLabel);  // Ajouter à la colonne cible
 
                     // Récupérer l'étiquette à partir de l'événement drag-and-drop
