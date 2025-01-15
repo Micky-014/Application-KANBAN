@@ -172,6 +172,9 @@ public class KanbanController {
         deleteItem.setOnAction(event -> {
             VBox parentColumn = (VBox) taskLabel.getParent();
             parentColumn.getChildren().remove(taskLabel);
+            Taches tache = projet.projetGetTache(taskLabel.getText());
+            projet.supprimerTache(tache);
+            projet.suprimerChercheTache(taskLabel.getText());
             System.out.println("Tâche supprimée : " + taskLabel.getText());
         });
         contextMenu.getItems().add(deleteItem);
