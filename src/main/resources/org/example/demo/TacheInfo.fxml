@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.AddTacheController"
+          hgap="10" vgap="10" alignment="CENTER">
+    <children>
+        <Label text="Nouvelle Tâche" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+            <font>
+                <Font size="20" />
+            </font>
+        </Label>
+
+        <Label text="Nom" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="nomTacheField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <Label text="Priorité" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <ComboBox fx:id="prioriteComboBox" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="150">
+
+        </ComboBox>
+
+        <Label text="Date" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <HBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <children>
+                <TextField fx:id="jourField" promptText="JJ" prefWidth="50"/>
+                <TextField fx:id="moisField" promptText="MM" prefWidth="50" />
+                <TextField fx:id="anneeField" promptText="AAAA" prefWidth="80" />
+            </children>
+        </HBox>
+
+        <Label text="Description" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <TextArea fx:id="commentairesField" GridPane.columnIndex="1" GridPane.rowIndex="4" prefHeight="100" />
+
+        <Button text="Ajouter Tâche" onAction="#handleAjouterTache" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+    </children>
+</GridPane>
