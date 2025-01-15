@@ -55,23 +55,6 @@ public class KanbanController {
         initializeKanban();
     }
 
-    @FXML
-    private void handleAjouterEmployeAuProjet() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AjouterEmployeAuProjet.fxml"));
-            Parent root = loader.load();
-
-            AddEmployeAuProjetController controller = loader.getController();
-            controller.setProjet(projet); // Transmettre le projet actuel
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Ajouter des employés au projet");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     private void initializeKanban() {
