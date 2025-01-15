@@ -4,6 +4,8 @@ import Entreprise.Taches;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 
 import java.awt.*;
 
@@ -22,6 +24,7 @@ public class TacheInfoController {
     private TextField anneeField;
     @FXML
     private TextArea commentairesField;
+
     public void setTache(Taches tache) {
         this.tache=tache;
     }
