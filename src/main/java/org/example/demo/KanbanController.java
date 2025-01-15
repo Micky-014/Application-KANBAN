@@ -36,6 +36,10 @@ public class KanbanController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AddTache.fxml"));
             Parent root = loader.load();
 
+            AddTacheController addTacheController = loader.getController();
+
+            addTacheController.setMainController(this);
+
             // Créer une nouvelle fenêtre pour la tâche
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -52,7 +56,26 @@ public class KanbanController {
     }
 
     @FXML
+    private void handleAjouterEmployeAuProjet() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AjouterEmployeAuProjet.fxml"));
+            Parent root = loader.load();
+
+            AddEmployeAuProjetController controller = loader.getController();
+            controller.setProjet(projet); // Transmettre le projet actuel
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Ajouter des employés au projet");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     private void initializeKanban() {
+
         if (projet != null) {
             taches = projet.getTaches();
             for (Taches tache : taches) {
@@ -70,6 +93,18 @@ public class KanbanController {
                 enableContextMenu(tacheLabel);
             }
         }
+    }
+
+    public void ajouterTacheKanban(Taches tache){
+        Label tacheLabel= new Label(tache.getTitre());
+        tacheLabel.setStyle("-fx-font-size: 14px; -fx-padding: 5px");
+
+        tacheAFaire.getChildren().add(tacheLabel);
+
+        enableDragAndDrop(tacheLabel);
+        enableContextMenu(tacheLabel);
+
+        System.out.println("Tache ajoutée" + tache);
     }
 
     private void enableDragAndDrop(Label taskLabel) {

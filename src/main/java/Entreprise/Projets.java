@@ -57,14 +57,16 @@ public class Projets {
         return nomDeProjet;
     }
 
+    public List<Employes> getEmployes() {return listeEmployes;}
+    public void ajouterEmploye(Employes employe) {listeEmployes.add(employe);}
+    public void supprimerEmploye(Employes employe) {listeEmployes.remove(employe);}
+
     public void ajouterTache(Taches tache) {
         listeTaches.add(tache);
     }
-
     public void supprimerTache(Taches tache) {
         listeTaches.remove(tache);
     }
-
     public List<Taches> getTaches(){
         return listeTaches;
     }

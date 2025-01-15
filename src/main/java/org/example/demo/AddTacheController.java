@@ -1,5 +1,6 @@
 package org.example.demo;
 
+import Entreprise.Projets;
 import Entreprise.Taches;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,14 +26,18 @@ public class AddTacheController {
     private TextArea commentairesField;
     @FXML
     private ComboBox<String> prioriteComboBox;
+    private KanbanController mainController;
 
-    private MainViewController mainController;
 
-    // Méthode pour transmettre une référence au contrôleur principal
-    public void setMainController(MainViewController mainController) {
-        this.mainController = mainController;
+    public void setMainController(KanbanController mainController){
+        this.mainController=mainController;
     }
 
+    private Projets projet;
+
+    public void setProjet(Projets projet) {
+        this.projet = projet;
+    }
 
     @FXML
     public void initialize() {
@@ -62,8 +67,10 @@ public class AddTacheController {
             // Créer une nouvelle tâche
             Taches tache = new Taches(nom, priorite, date, commentaires);
 
-            // Ajouter la tâche (logique à définir selon votre application)
-            System.out.println("Tâche ajoutée : " + tache);
+
+            if(mainController!=null){
+                mainController.ajouterTacheKanban(tache);
+            }
 
             // Fermer la fenêtre
             Stage stage = (Stage) nomTacheField.getScene().getWindow();
