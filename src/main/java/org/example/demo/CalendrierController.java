@@ -57,7 +57,7 @@ public class CalendrierController {
 
         LocalDate currentDate = firstDayOfMonth.minusDays(dayOfWeek - 1);
 
-        for (int row = 0; row < 6; row++) {
+        for (int row = 0; row < 5; row++) {
             for (int col = 0; col < 7; col++) {
                 LocalDate date = currentDate.plusDays(row * 7 + col);
                 Button dayButton = new Button(String.valueOf(date.getDayOfMonth()));

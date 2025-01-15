@@ -37,6 +37,10 @@ public class AddEmployeAuProjetController {
         if (!projet.getEmployes().contains(selectedEmploye)) {
             projet.ajouterEmploye(selectedEmploye);
             selectedEmploye.ajouterProjet(projet);
+
+            employeList.remove(selectedEmploye);
+
+
             showInfo("Succès", "Employé ajouté au projet.");
         } else {
             showError("Erreur", "Cet employé est déjà associé au projet.");
