@@ -14,7 +14,9 @@ public class Taches {
     private Employes responsable;
     private String statut;
     private String commentaires;
-    private HashMap<Taches,List<Employes>> Equipe = new HashMap<Taches,List<Employes>>();
+    private List<Employes> Equipe = new ArrayList<>();
+    private List<Employes> EquipeDisponible = new ArrayList<>();
+    private HashMap<Taches,List<Employes>> dictEquipe = new HashMap<Taches,List<Employes>>();
     public Taches(String titre, String priorite, LocalDate dateLimite,String commentaires) {
         this.id = NombreId++;
         this.titre = titre;
@@ -69,5 +71,26 @@ public class Taches {
     }
     public String getCommentaires() {
         return commentaires;
+    }
+    public List<Employes> getEquipe() {
+        return Equipe;
+    }
+    public void addEquipe(Employes equipe) {
+        Equipe.add(equipe);
+    }
+    public void suprEquipe(Employes employe){
+        Equipe.remove(employe);
+    }
+    public List<Employes> getEquipeDisponible() {
+        return EquipeDisponible;
+    }
+    public void addEquipeDisponible(Employes employe){
+        EquipeDisponible.add(employe);
+    }
+    public void suprEquipeDisponible(Employes employe){
+        EquipeDisponible.remove(employe);
+    }
+    public void setEquipeDisponible(List<Employes> equipeDisponible) {
+        this.EquipeDisponible=equipeDisponible;
     }
 }

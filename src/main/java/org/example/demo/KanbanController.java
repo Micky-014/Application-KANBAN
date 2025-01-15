@@ -183,8 +183,8 @@ public class KanbanController {
                     Taches tache = projet.projetGetTache(taskLabel.getText());
 
                     // Passer les données de la tâche au contrôleur
+                    infoTacheController.setProjet(projet);
                     infoTacheController.setTache(tache);
-
                     infoTacheController.initialize();
                     // Créer une nouvelle fenêtre pour afficher les informations de la tâche
                     Stage stage = new Stage();

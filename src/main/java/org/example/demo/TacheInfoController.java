@@ -1,5 +1,7 @@
 package org.example.demo;
 
+import Entreprise.Employes;
+import Entreprise.Projets;
 import Entreprise.Taches;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,14 +9,18 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.VBox;
 
 
 import java.awt.*;
 import java.time.LocalDate;
+import java.util.List;
 
 public class TacheInfoController {
     @FXML
     private Taches tache;
+    @FXML
+    private Projets projet;
     @FXML
     private TextField nomTacheField;
     @FXML
@@ -29,9 +35,29 @@ public class TacheInfoController {
     private TextArea commentairesField;
     @FXML
     private Label statutField;
+    @FXML
+    private ComboBox<Employes> employesComboBox;
+    @FXML
+    private VBox employesField;
+
+    @FXML
+    private List<Employes> employesProjet;
+
+
+    public void setProjet(Projets projet) {
+        this.projet = projet;
+        if (projet != null) {
+            System.out.println("Nom du projet = "+projet.getNomDeProjet());
+        }
+        else {
+            System.out.println("Erreur chargement projet");
+        }
+    }
 
     public void setTache(Taches tache) {
         this.tache=tache;
+        System.out.println(projet.getEmployes());
+        tache.setEquipeDisponible(projet.getEmployes());
         if (tache == null) {
             System.err.println("Erreur : L'objet 'tache' est null !");
         } else {
@@ -43,6 +69,19 @@ public class TacheInfoController {
             anneeField.setText(String.valueOf(tache.getDateLimite().getYear()));
             commentairesField.setText(tache.getCommentaires());
             statutField.setText(String.valueOf(tache.getStatut()));
+            for (Employes employes : tache.getEquipe()){
+                if (tache.getEquipeDisponible().contains(employes)){
+                    tache.suprEquipeDisponible(employes);
+                }
+                System.out.println(employes);
+                Label newLabel = new Label(employes.getNom()+" "+employes.getPrenom());
+                // Ajouter des styles ou personnalisation si nécessaire
+                newLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #333;"); // Exemple de style
+
+                // Ajouter le Label à la VBox
+                employesField.getChildren().add(newLabel);
+            }
+            employesComboBox.getItems().addAll(tache.getEquipeDisponible());
         }
     }
     public void initialize() {
@@ -56,10 +95,13 @@ public class TacheInfoController {
         moisField.setEditable(editable);
         anneeField.setEditable(editable);
         commentairesField.setEditable(editable);
+        employesComboBox.setDisable(!editable);
+
     }
     @FXML
     private void handleModifier(ActionEvent event) {
         setFieldsEditable(true);
+
     }
     @FXML
     private void handleSave(ActionEvent event) {
@@ -71,5 +113,24 @@ public class TacheInfoController {
         int annee = Integer.parseInt(anneeField.getText());
         tache.setDateLimite(LocalDate.of(annee,mois,jour));
         setFieldsEditable(false);
+    }
+
+    private void reinitSuprComboBox(Employes employe) {
+        employesComboBox.getItems().clear();
+        tache.addEquipe(employe);
+        employesProjet.remove(employe);
+        employesComboBox.getItems().addAll(employesProjet);
+    }
+
+    @FXML
+    private void handleAjouterEmploye(ActionEvent event) {
+        Employes employe = employesComboBox.getSelectionModel().getSelectedItem();
+        Label newLabel = new Label(employe.getNom()+" "+employe.getPrenom());
+        reinitSuprComboBox(employe);
+        // Ajouter des styles ou personnalisation si nécessaire
+        newLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #333;"); // Exemple de style
+
+        // Ajouter le Label à la VBox
+        employesField.getChildren().add(newLabel);
     }
 }
