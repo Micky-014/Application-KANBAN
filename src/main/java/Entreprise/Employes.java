@@ -69,8 +69,14 @@ public class  Employes {
         System.out.println("Employé supprimé : " + nom + " " + prenom);
     }
 
-    public void ajouterProjet(Projets projet){
-        historiqueProjets.add(projet);
+    public List<Projets> getProjetsAssocies() {
+        return historiqueProjets;
+    }
+
+    public void ajouterProjet(Projets projet) {
+        if (!historiqueProjets.contains(projet)) {
+            historiqueProjets.add(projet);
+        }
     }
 
     public void afficherHistorique(){

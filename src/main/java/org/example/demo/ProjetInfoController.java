@@ -78,11 +78,7 @@ public class ProjetInfoController {
 
     }
 
-    @FXML
-    private ListView<String> employeListView;
 
-
-    // Appelez cette méthode après l'ajout d'employés
     @FXML
     private void handleAjouterEmployeAuProjet() {
         try {
@@ -96,8 +92,8 @@ public class ProjetInfoController {
             stage.setScene(new Scene(root));
             stage.setTitle("Ajouter des employés au projet");
 
-
             stage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
             showError("Erreur", "Impossible d'ouvrir la fenêtre d'ajout d'employés.");
