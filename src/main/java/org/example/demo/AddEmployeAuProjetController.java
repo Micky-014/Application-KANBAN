@@ -9,6 +9,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddEmployeAuProjetController {
 
     @FXML
@@ -21,7 +24,13 @@ public class AddEmployeAuProjetController {
     public void setProjet(Projets projet) {
         this.projet = projet;
         if (projet != null) {
-            employeList.setAll(Employes.getListeEmployes()); // Charger tous les employés disponibles
+            List<Employes> listEmployes =new ArrayList<>(Employes.getListeEmployes());
+            for (Employes employes : projet.getEmployes()) {
+                if (listEmployes.contains(employes)){
+                    listEmployes.remove(employes);
+                }
+            }
+            employeList.setAll(listEmployes); // Charger tous les employés disponibles
             employeListView.setItems(employeList);
         }
     }
@@ -33,14 +42,10 @@ public class AddEmployeAuProjetController {
             showError("Erreur", "Veuillez sélectionner un employé.");
             return;
         }
-
         if (!projet.getEmployes().contains(selectedEmploye)) {
             projet.ajouterEmploye(selectedEmploye);
             selectedEmploye.ajouterProjet(projet);
-
             employeList.remove(selectedEmploye);
-
-
             showInfo("Succès", "Employé ajouté au projet.");
         } else {
             showError("Erreur", "Cet employé est déjà associé au projet.");
