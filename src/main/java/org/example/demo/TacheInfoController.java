@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 
 import java.awt.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TacheInfoController {
@@ -57,7 +58,8 @@ public class TacheInfoController {
     public void setTache(Taches tache) {
         this.tache=tache;
         System.out.println(projet.getEmployes());
-        tache.setEquipeDisponible(projet.getEmployes());
+        List<Employes> listEmployes = new ArrayList<>(projet.getEmployes());
+        tache.setEquipeDisponible(listEmployes);
         if (tache == null) {
             System.err.println("Erreur : L'objet 'tache' est null !");
         } else {
@@ -118,8 +120,8 @@ public class TacheInfoController {
     private void reinitSuprComboBox(Employes employe) {
         employesComboBox.getItems().clear();
         tache.addEquipe(employe);
-        employesProjet.remove(employe);
-        employesComboBox.getItems().addAll(employesProjet);
+        tache.suprEquipeDisponible(employe);
+        employesComboBox.getItems().addAll(tache.getEquipeDisponible());
     }
 
     @FXML
