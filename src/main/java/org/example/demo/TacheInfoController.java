@@ -42,11 +42,19 @@ public class TacheInfoController {
     private ComboBox<Employes> employesComboBox;
     @FXML
     private VBox employesField;
-
+    @FXML
+    KanbanController kanbanController;
+    @FXML
+    private Label taskLabel;
     @FXML
     private List<Employes> employesProjet;
 
-
+    public void setController(KanbanController controller) {
+        this.kanbanController = controller;
+    }
+    public void setLabel(Label label) {
+        this.taskLabel = label;
+    }
     public void setProjet(Projets projet) {
         this.projet = projet;
         if (projet != null) {
@@ -105,12 +113,14 @@ public class TacheInfoController {
     @FXML
     private void handleModifier(ActionEvent event) {
         setFieldsEditable(true);
-
     }
 
     @FXML
     private void handleSave(ActionEvent event) {
+        taskLabel.setText(nomTacheField.getText());
+        projet.suprimerChercheTache(tache.getTitre());
         tache.setTitre(nomTacheField.getText());
+        projet.projetAddTache(nomTacheField.getText(),tache);
         tache.setPriorite(prioriteComboBox.getSelectionModel().getSelectedItem());
         tache.setCommentaires(commentairesField.getText());
         int jour = Integer.parseInt(jourField.getText());

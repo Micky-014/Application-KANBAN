@@ -76,8 +76,14 @@ public class Projets {
     public Taches projetGetTache(String titre) {
         return chercheTaches.get(titre);
     }
+    public Taches projetSuprTache(String titre) {
+        return chercheTaches.remove(titre);
+    }
     public void suprimerChercheTache(String titre) {
         chercheTaches.remove(titre);
+    }
+    public void projetAddTache(String titre, Taches tache) {
+        chercheTaches.put(titre, tache);
     }
     public List<Taches> getTaches(){
         return listeTaches;

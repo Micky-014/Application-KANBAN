@@ -54,7 +54,7 @@ public class KanbanController {
     }
 
     @FXML
-    private void initializeKanban() {
+    public void initializeKanban() {
         if (projet != null) {
             taches = projet.getTaches();
             List<Employes> listeEmployes = new ArrayList<>(projet.getEmployes());
@@ -99,7 +99,6 @@ public class KanbanController {
                 System.err.println("Erreur : le parent du label n'est pas une VBox.");
             }
         });
-
         contextMenu.getItems().add(deleteItem);
         employeLabel.setOnContextMenuRequested(event -> {
             contextMenu.show(employeLabel, event.getScreenX(), event.getScreenY());
@@ -112,7 +111,7 @@ public class KanbanController {
         tacheAFaire.getChildren().add(tacheLabel);
         enableDragAndDrop(tacheLabel);
         enableContextMenu(tacheLabel);
-
+        projet.projetAddTache(tache.getTitre(),tache);
         System.out.println("Tâche ajoutée dans l'interface via le contrôleur principal : " + tache);
     }
 
@@ -179,7 +178,6 @@ public class KanbanController {
             System.out.println("Tâche supprimée : " + taskLabel.getText());
         });
         contextMenu.getItems().add(deleteItem);
-
         taskLabel.setOnContextMenuRequested(event -> contextMenu.show(taskLabel, event.getScreenX(), event.getScreenY()));
     }
 
@@ -193,6 +191,8 @@ public class KanbanController {
                     Taches tache = projet.projetGetTache(taskLabel.getText());
                     infoTacheController.setProjet(projet);
                     infoTacheController.setTache(tache);
+                    infoTacheController.setLabel(taskLabel); // Passe le Label à modifier
+                    infoTacheController.setController(this);
                     infoTacheController.initialize();
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
