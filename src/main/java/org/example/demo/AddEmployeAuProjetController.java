@@ -30,7 +30,7 @@ public class AddEmployeAuProjetController {
                     listEmployes.remove(employes);
                 }
             }
-            employeList.setAll(listEmployes); // Charger tous les employés disponibles
+            employeList.setAll(listEmployes);
             employeListView.setItems(employeList);
         }
     }

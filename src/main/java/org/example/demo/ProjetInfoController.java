@@ -52,9 +52,7 @@ public class ProjetInfoController {
         this.mainController = mainController;
     }
 
-    // Méthode pour définir les détails d'un employé
     public void setProjetDetails(Projets projet) {
-
         this.projet = projet;
         if (projet != null) {
             nomField.setText(projet.getNomDeProjet());
@@ -65,7 +63,6 @@ public class ProjetInfoController {
             moisFinField.setText(String.valueOf(projet.getDebut().getMonthValue()));
             anneeFinField.setText(String.valueOf(projet.getDebut().getYear()));
             idLabel.setText(String.valueOf(projet.getId()));
-
             afficherHistorique();
         }
         nomField.setEditable(false);
@@ -75,7 +72,6 @@ public class ProjetInfoController {
         jourFinField.setEditable(false);
         moisFinField.setEditable(false);
         anneeFinField.setEditable(false);
-
     }
 
 
@@ -84,16 +80,12 @@ public class ProjetInfoController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/demo/AddEmployeAuProjet.fxml"));
             Parent root = loader.load();
-
             AddEmployeAuProjetController controller = loader.getController();
             controller.setProjet(projet);
-
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Ajouter des employés au projet");
-
             stage.show();
-
         } catch (IOException e) {
             e.printStackTrace();
             showError("Erreur", "Impossible d'ouvrir la fenêtre d'ajout d'employés.");
@@ -110,13 +102,11 @@ public class ProjetInfoController {
     }
 
     private void afficherHistorique() {
-        // Exemple : Ajouter un historique fictif
         historiqueListView.getItems().addAll("Étape 1 : Analyse", "Étape 2 : Développement", "Étape 3 : Tests");
     }
 
     @FXML
     private void handleEdit() {
-        // Active la modification des champs
         nomField.setEditable(true);
         jourDebutField.setEditable(true);
         moisDebutField.setEditable(true);
@@ -140,7 +130,6 @@ public class ProjetInfoController {
             projet.setFin(LocalDate.of(anneeFin, moisFin, jourFin));
             afficherMessage("Modification réussie", "Les informations du projet ont été mises à jour.");
 
-            // Désactive l'édition après enregistrement
             nomField.setEditable(false);
             jourDebutField.setEditable(false);
             moisDebutField.setEditable(false);
@@ -148,7 +137,6 @@ public class ProjetInfoController {
             jourFinField.setEditable(false);
             moisFinField.setEditable(false);
             anneeFinField.setEditable(false);
-
             if (mainController != null) {
                 mainController.refreshListView();
             }
@@ -163,13 +151,11 @@ public class ProjetInfoController {
         alert.showAndWait();
     }
 
-
     @FXML
     private void handleDelete() {
         if (projet != null && mainController != null) {
             mainController.deleteProjetFromList(projet);
             afficherMessage("Suppression réussie", "Le projet a été supprimé.");
-            // Fermer la fenêtre actuelle
             idLabel.getScene().getWindow().hide();
             for (Employes employes : projet.getEmployes()){
                 employes.suprHistoriqueProjets(projet);
@@ -180,13 +166,9 @@ public class ProjetInfoController {
     @FXML
     private void handleKanban() {
         if (projet != null && mainController != null) {
-            mainController.showKanban(projet); // Passe le projet à la méthode du contrôleur principal
+            mainController.showKanban(projet);
             Stage stage = (Stage) nomField.getScene().getWindow();
-            stage.close(); // Fermer la fenêtre actuelle si nécessaire
+            stage.close();
         }
     }
-    
-    
-
-
 }

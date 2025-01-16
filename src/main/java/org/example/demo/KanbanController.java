@@ -36,15 +36,11 @@ public class KanbanController {
 
     public void handleAjouterTache() {
         try {
-            // Charger la fenêtre d'ajout de tache
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AddTache.fxml"));
             Parent root = loader.load();
 
             AddTacheController addTacheController = loader.getController();
-
-            // Transmettre une référence à ce contrôleur principal
             addTacheController.setMainController(this);
-            // Créer une nouvelle fenêtre pour la tâche
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Ajouter une Tâche");
@@ -53,29 +49,24 @@ public class KanbanController {
             e.printStackTrace();
         }
     }
-
     public void setProjet(Projets projet) {
         this.projet = projet;
         initializeKanban();
     }
 
-
     @FXML
     private void initializeKanban() {
-
         if (projet != null) {
             taches = projet.getTaches();
             List<Employes> listeEmployes = new ArrayList<>(projet.getEmployes());
             for (Taches tache : taches) {
                 Label tacheLabel = new Label(tache.getTitre());
                 tacheLabel.setStyle("-fx-font-size: 14px; -fx-padding: 5px;");
-
                 switch (tache.getStatut()) {
                     case "A faire" -> tacheAFaire.getChildren().add(tacheLabel);
                     case "En cours" -> tacheEnCours.getChildren().add(tacheLabel);
                     case "Terminée" -> tacheTerminee.getChildren().add(tacheLabel);
                 }
-                // Activer le drag-and-drop et le menu contextuel pour chaque tâche
                 enableDragAndDrop(tacheLabel);
                 enableContextMenu(tacheLabel);
             }
@@ -90,21 +81,14 @@ public class KanbanController {
 
 
     private void enableContextMenu2(Label employeLabel, Employes employe) {
-        // Créer un menu contextuel
         ContextMenu contextMenu = new ContextMenu();
         MenuItem deleteItem = new MenuItem("Supprimer");
-
-        // Action lors du clic sur "Supprimer"
         deleteItem.setOnAction(event -> {
             Parent parent = employeLabel.getParent();
             if (parent instanceof VBox parentVBox) {
                 parentVBox.getChildren().remove(employeLabel); // Supprimer le label de l'interface
                 System.out.println("Employé supprimé : " + employe.getNom() + " " + employe.getPrenom());
-
-                // Supprimer l'employé dans le projet
                 projet.supprimerEmploye(employe);
-
-                // Supprimer l'employé des tâches associées
                 for (Taches tache : projet.getTaches()) {
                     if (tache.getEquipeDisponible().contains(employe)) {
                         tache.suprEquipeDisponible(employe);
@@ -117,10 +101,7 @@ public class KanbanController {
             }
         });
 
-        // Ajouter l'élément de suppression au menu
         contextMenu.getItems().add(deleteItem);
-
-        // Associer l'événement de clic droit au label
         employeLabel.setOnContextMenuRequested(event -> {
             contextMenu.show(employeLabel, event.getScreenX(), event.getScreenY());
         });
@@ -129,11 +110,7 @@ public class KanbanController {
     public void ajouterTacheKanban(Taches tache) {
         Label tacheLabel = new Label(tache.getTitre());
         tacheLabel.setStyle("-fx-font-size: 14px; -fx-padding: 5px;");
-
-        // Ajouter la tâche dans la colonne appropriée
         tacheAFaire.getChildren().add(tacheLabel);
-
-        // Activer le drag-and-drop et le menu contextuel
         enableDragAndDrop(tacheLabel);
         enableContextMenu(tacheLabel);
 
@@ -151,7 +128,6 @@ public class KanbanController {
             db.setContent(content);
             event.consume();
         });
-
         for (VBox column : columns) {
             column.setOnDragOver(event -> {
                 if (event.getGestureSource() != column && event.getDragboard().hasString()) {
@@ -159,27 +135,20 @@ public class KanbanController {
                 }
                 event.consume();
             });
-
             column.setOnDragDropped(event -> {
                 Dragboard db = event.getDragboard();
                 if (db.hasString()) {
                     String nomTache = db.getString();
-                    // Créer une nouvelle étiquette dans la colonne cible
                     Label newTaskLabel = new Label(nomTache);
                     newTaskLabel.setStyle("-fx-font-size: 14px; -fx-padding: 5px;");
                     enableContextMenu(newTaskLabel);
-                    column.getChildren().add(newTaskLabel);  // Ajouter à la colonne cible
+                    column.getChildren().add(newTaskLabel);
 
-                    // Récupérer l'étiquette à partir de l'événement drag-and-drop
-                    Label taskLabelDrag = (Label) event.getGestureSource();  // Cela récupère l'étiquette glissée
-
-                    // Supprimer l'étiquette de la colonne d'origine
+                    Label taskLabelDrag = (Label) event.getGestureSource();
                     VBox sourceColumn = (VBox) taskLabelDrag.getParent();
                     sourceColumn.getChildren().remove(taskLabelDrag);
 
-                    enableDragAndDrop(newTaskLabel); // Réactiver l'événement de drag sur la nouvelle étiquette
-
-                    // Mettre à jour la logique métier (statut de la tâche)
+                    enableDragAndDrop(newTaskLabel);
                     Taches tache = projet.projetGetTache(nomTache);
                     if (column == tacheAFaire) {
                         tache.setStatut("A faire");
@@ -196,7 +165,6 @@ public class KanbanController {
                 event.consume();
             });
         }
-        // Activer le double-clic sur le label
         enableDoubleClick(taskLabel);
     }
 
@@ -218,23 +186,15 @@ public class KanbanController {
 
     private void enableDoubleClick(Label taskLabel) {
         taskLabel.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) { // Vérifie si c'est un double-clic
+            if (event.getClickCount() == 2) {
                 try {
-                    // Charger la vue InfoTache.fxml
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("TacheInfo.fxml"));
                     Parent root = loader.load();
-
-                    // Récupérer le contrôleur de la vue InfoTache
                     TacheInfoController infoTacheController = loader.getController();
-
-                    // Récupérer la tâche associée à ce label
                     Taches tache = projet.projetGetTache(taskLabel.getText());
-
-                    // Passer les données de la tâche au contrôleur
                     infoTacheController.setProjet(projet);
                     infoTacheController.setTache(tache);
                     infoTacheController.initialize();
-                    // Créer une nouvelle fenêtre pour afficher les informations de la tâche
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
                     stage.setTitle("Informations sur la Tâche");

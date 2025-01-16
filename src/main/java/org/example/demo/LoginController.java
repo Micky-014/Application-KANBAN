@@ -24,7 +24,6 @@ public class LoginController {
     public void handleLogin() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-
         if (authenticate(username, password)) {
             loadMainView();
         } else {
@@ -33,7 +32,6 @@ public class LoginController {
     }
 
     private boolean authenticate(String username, String password) {
-        // Remplacez cette logique par une vraie vérification (ex : base de données)
         return "a".equals(username) && "a".equals(password);
     }
 

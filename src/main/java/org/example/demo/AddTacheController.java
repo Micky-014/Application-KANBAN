@@ -28,47 +28,34 @@ public class AddTacheController {
 
     private KanbanController mainController;
 
-    // Méthode pour transmettre une référence au contrôleur principal
     public void setMainController(KanbanController mainController) {
         this.mainController = mainController;
     }
 
-
     @FXML
     public void initialize() {
-        // Initialisation des options de priorité
         prioriteComboBox.getItems().addAll("Haute", "Moyenne", "Basse");
     }
 
     @FXML
     public void handleAjouterTache(ActionEvent event) {
-        // Récupérer les données des champs de texte
         String nom = nomTacheField.getText();
         String priorite = prioriteComboBox.getValue();
         String jour = jourField.getText();
         String mois = moisField.getText();
         String annee = anneeField.getText();
         String commentaires = commentairesField.getText();
-
         if (nom.isEmpty() || priorite == null || jour.isEmpty() || mois.isEmpty() || annee.isEmpty()) {
             showAlert("Erreur", "Tous les champs doivent être remplis.");
             return;
         }
-
         try {
-            // Convertir et valider la date
             LocalDate date = parseDate(jour, mois, annee);
-
-            // Créer une nouvelle tâche
             Taches tache = new Taches(nom, priorite, date, commentaires);
             mainController.ajouterTacheKanban(tache);
-            // Ajouter la tâche (logique à définir selon votre application)
             System.out.println("Tâche ajoutée : " + tache);
-
-            // Fermer la fenêtre
             Stage stage = (Stage) nomTacheField.getScene().getWindow();
             stage.close();
-
         } catch (NumberFormatException e) {
             showAlert("Erreur", "Veuillez entrer des valeurs numériques valides pour la date.");
         } catch (IllegalArgumentException e) {
@@ -81,11 +68,9 @@ public class AddTacheController {
             int jourInt = Integer.parseInt(jour);
             int moisInt = Integer.parseInt(mois);
             int anneeInt = Integer.parseInt(annee);
-
             if (jourInt < 1 || jourInt > 31 || moisInt < 1 || moisInt > 12 || anneeInt < 1900) {
                 throw new IllegalArgumentException("Veuillez entrer une date valide.");
             }
-
             return LocalDate.of(anneeInt, moisInt, jourInt);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Les champs de date doivent contenir uniquement des chiffres.");

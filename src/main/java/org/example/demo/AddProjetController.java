@@ -33,14 +33,12 @@ public class AddProjetController {
 
     private MainViewController mainController;
 
-    // Méthode pour transmettre une référence au contrôleur principal
     public void setMainController(MainViewController mainController) {
         this.mainController = mainController;
     }
 
     @FXML
     public void handleAjouterProjet(ActionEvent event) {
-        // Récupérer les données des champs
         String nomProjet = nomProjetField.getText();
         String jourDebut = jourDebutField.getText();
         String moisDebut = moisDebutField.getText();
@@ -48,8 +46,6 @@ public class AddProjetController {
         String jourFin = jourFinField.getText();
         String moisFin = moisFinField.getText();
         String anneeFin = anneeFinField.getText();
-
-        // Validation des champs
         if (nomProjet.isEmpty() || jourDebut.isEmpty() || moisDebut.isEmpty() || anneeDebut.isEmpty()
                 || jourFin.isEmpty() || moisFin.isEmpty() || anneeFin.isEmpty()) {
             System.out.println("Veuillez remplir tous les champs !");
@@ -57,22 +53,15 @@ public class AddProjetController {
         }
 
         try {
-            // Convertir et valider les dates
             LocalDate debut = parseDate(jourDebut, moisDebut, anneeDebut);
             LocalDate fin = parseDate(jourFin, moisFin, anneeFin);
-
             if (debut.isAfter(fin)) {
                 showAlert("Erreur", "La date de début doit être avant la date de fin.");
                 return;
             }
-
-
-            // Ajouter le projet à la liste principale
             if (mainController != null) {
                 mainController.addProjetToList(nomProjet, debut, fin);
             }
-
-            // Fermer la fenêtre actuelle
             Stage stage = (Stage) nomProjetField.getScene().getWindow();
             stage.close();
 
@@ -88,11 +77,9 @@ public class AddProjetController {
             int jourInt = Integer.parseInt(jour);
             int moisInt = Integer.parseInt(mois);
             int anneeInt = Integer.parseInt(annee);
-
             if (jourInt < 1 || jourInt > 31 || moisInt < 1 || moisInt > 12 || anneeInt < 1900) {
                 throw new IllegalArgumentException("Veuillez entrer une date valide.");
             }
-
             return LocalDate.of(anneeInt, moisInt, jourInt);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Les champs de date doivent contenir uniquement des chiffres.");

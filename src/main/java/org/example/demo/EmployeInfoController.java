@@ -37,9 +37,8 @@ public class EmployeInfoController {
         this.mainController = mainController;
     }
 
-    // Méthode pour définir les détails d'un employé
-    public void setEmployeDetails(Employes employe) {
 
+    public void setEmployeDetails(Employes employe) {
         this.employe = employe;
         if (employe != null) {
             nomField.setText(employe.getNom());
@@ -53,7 +52,6 @@ public class EmployeInfoController {
         prenomField.setEditable(false);
         contactField.setEditable(false);
         roleField.setEditable(false);
-
     }
 
     private void afficherHistorique() {
@@ -65,7 +63,6 @@ public class EmployeInfoController {
 
     @FXML
     private void handleEdit() {
-        // Active la modification des champs
         nomField.setEditable(true);
         prenomField.setEditable(true);
         contactField.setEditable(true);
@@ -80,8 +77,6 @@ public class EmployeInfoController {
             employe.setContact(contactField.getText());
             employe.setRole(roleField.getText());
             afficherMessage("Modification réussie", "Les informations de l'employé ont été mises à jour.");
-
-            // Désactive l'édition après enregistrement
             nomField.setEditable(false);
             prenomField.setEditable(false);
             contactField.setEditable(false);
@@ -100,14 +95,12 @@ public class EmployeInfoController {
         alert.showAndWait();
     }
 
-
     @FXML
     private void handleDelete() {
         if (employe != null && mainController != null) {
             if (showConfirmationDialog("Confirmation", "Voulez-vous vraiment supprimer cet employé ?")) {
                 mainController.deleteEmployeFromList(employe);
                 afficherMessage("Suppression réussie", "L'employé a été supprimé.");
-                // Fermer la fenêtre actuelle
                 idLabel.getScene().getWindow().hide();
                 for (Projets projets : Projets.getListeProjets()){
                     if (projets.getEmployes().contains(employe)) {
@@ -131,7 +124,6 @@ public class EmployeInfoController {
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
-
         return alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK;
     }
 }

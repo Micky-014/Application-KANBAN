@@ -26,12 +26,12 @@ public class CalendrierController {
     private ListView<String> eventListView;
 
     private YearMonth currentMonth;
-    private List<Projets> projets; // Liste des projets à afficher
+    private List<Projets> projets;
 
     @FXML
     public void initialize() {
         currentMonth = YearMonth.now();
-        projets = Projets.getListeProjets(); // Charger tous les projets
+        projets = Projets.getListeProjets();
         afficherMois();
     }
 
@@ -53,17 +53,13 @@ public class CalendrierController {
         monthLabel.setText(currentMonth.getMonth() + " " + currentMonth.getYear());
 
         LocalDate firstDayOfMonth = currentMonth.atDay(1);
-        int dayOfWeek = firstDayOfMonth.getDayOfWeek().getValue(); // 1 = Lundi, 7 = Dimanche
-
+        int dayOfWeek = firstDayOfMonth.getDayOfWeek().getValue();
         LocalDate currentDate = firstDayOfMonth.minusDays(dayOfWeek - 1);
-
         for (int row = 0; row < 5; row++) {
             for (int col = 0; col < 7; col++) {
                 LocalDate date = currentDate.plusDays(row * 7 + col);
                 Button dayButton = new Button(String.valueOf(date.getDayOfMonth()));
                 dayButton.setPrefSize(50, 50);
-
-                // Ajouter les événements associés à la date
                 dayButton.setOnAction(event -> afficherEvenements(date));
                 calendarGrid.add(dayButton, col, row);
             }
@@ -72,13 +68,11 @@ public class CalendrierController {
 
     private void afficherEvenements(LocalDate date) {
         eventListView.getItems().clear();
-
         for (Projets projet : projets) {
             if ((projet.getDebut().isEqual(date) || projet.getDebut().isBefore(date)) &&
                     (projet.getFin().isEqual(date) || projet.getFin().isAfter(date))) {
                 eventListView.getItems().add("Projet : " + projet.getNomDeProjet());
             }
-
             for (Taches tache : projet.getTaches()) {
                 if (tache.getDateLimite().isEqual(date)) {
                     eventListView.getItems().add("Tâche : " + tache.getTitre());

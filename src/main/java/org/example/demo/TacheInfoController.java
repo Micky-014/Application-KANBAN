@@ -79,34 +79,35 @@ public class TacheInfoController {
                 }
                 System.out.println(employes);
                 Label newLabel = new Label(employes.getNom()+" "+employes.getPrenom());
-                // Ajouter des styles ou personnalisation si nécessaire
                 newLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #333;"); // Exemple de style
                 enableContextMenu(newLabel, employes);
-                // Ajouter le Label à la VBox
                 employesField.getChildren().add(newLabel);
             }
             employesComboBox.getItems().addAll(tache.getEquipeDisponible());
         }
     }
+
     public void initialize() {
         prioriteComboBox.getItems().addAll("Haute", "Moyenne", "Basse");
         setFieldsEditable(false);
     }
+
     public void setFieldsEditable(boolean editable) {
         nomTacheField.setEditable(editable);
-        prioriteComboBox.setDisable(!editable); // Disable pour ComboBox
+        prioriteComboBox.setDisable(!editable);
         jourField.setEditable(editable);
         moisField.setEditable(editable);
         anneeField.setEditable(editable);
         commentairesField.setEditable(editable);
         employesComboBox.setDisable(!editable);
-
     }
+
     @FXML
     private void handleModifier(ActionEvent event) {
         setFieldsEditable(true);
 
     }
+
     @FXML
     private void handleSave(ActionEvent event) {
         tache.setTitre(nomTacheField.getText());
@@ -131,40 +132,24 @@ public class TacheInfoController {
         Employes employe = employesComboBox.getSelectionModel().getSelectedItem();
         Label newLabel = new Label(employe.getNom()+" "+employe.getPrenom());
         reinitSuprComboBox(employe);
-        // Ajouter des styles ou personnalisation si nécessaire
-        newLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #333;"); // Exemple de style
-
-        // Ajouter le Label à la VBox
+        newLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #333;");
         employesField.getChildren().add(newLabel);
         enableContextMenu(newLabel, employe);
     }
+
     private void enableContextMenu(Label taskLabel, Employes employe) {
-        // Création du menu contextuel
         ContextMenu contextMenu = new ContextMenu();
-
-        // Création de l'élément "Supprimer"
         MenuItem deleteItem = new MenuItem("Supprimer");
-
-        // Ajout du gestionnaire d'événements pour l'action
         deleteItem.setOnAction(event -> {
             VBox parentColumn = (VBox) taskLabel.getParent();
-            parentColumn.getChildren().remove(taskLabel);  // Retirer le label de l'interface
-
-            // Supprimer l'employé de la tâche
+            parentColumn.getChildren().remove(taskLabel);
             tache.suprEquipe(employe);
-            tache.addEquipeDisponible(employe);  // Ajouter l'employé à la liste des employés disponibles
-
-            // Mettre à jour la ComboBox pour refléter les changements
+            tache.addEquipeDisponible(employe);
             employesComboBox.getItems().clear();
             employesComboBox.getItems().addAll(tache.getEquipeDisponible());
-
             System.out.println("Employé supprimé : " + employe.getNom() + " " + employe.getPrenom());
         });
-
-        // Ajouter l'élément "Supprimer" au menu contextuel
         contextMenu.getItems().add(deleteItem);
-
-        // Afficher le menu contextuel lorsqu'un clic droit est effectué sur le Label
         taskLabel.setOnContextMenuRequested(event -> {
             contextMenu.show(taskLabel, event.getScreenX(), event.getScreenY());
         });

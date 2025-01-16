@@ -23,43 +23,30 @@ public class AddEmployeController {
 
     private MainViewController mainController;
 
-    // Méthode pour transmettre une référence au contrôleur principal
     public void setMainController(MainViewController mainController) {
         this.mainController = mainController;
     }
 
     @FXML
     public void handleAjouterEmploye(ActionEvent event) {
-        // Récupérer les données des champs de texte
         String nom = nomField.getText();
         String prenom = prenomField.getText();
         String contact = contactField.getText();
         String role = roleField.getText();
-
-
-
-        // Validation des champs
         if (nom.isEmpty() || prenom.isEmpty() || contact.isEmpty() || role.isEmpty()) {
             showAlert("Erreur", "Tous les champs doivent être remplis.");
             return;
         }
-
-        if (!contact.matches("\\S+@\\S+\\.\\S+")) { // Vérification simple pour un email valide
+        if (!contact.matches("\\S+@\\S+\\.\\S+")) {
             showAlert("Erreur", "Veuillez entrer une adresse e-mail valide.");
             return;
         }
-
-        // Ajouter l'employé à la ListView du contrôleur principal
         if (mainController != null)  {
             mainController.addEmployeToList(nom, prenom, contact, role);
         }
-
-
-        // Fermer la fenêtre actuelle
         Stage stage = (Stage) nomField.getScene().getWindow();
         stage.close();
     }
-
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
