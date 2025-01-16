@@ -61,6 +61,7 @@ public class Projets {
     }
     public void ajouterEmploye(Employes employe) {
         listeEmployes.add(employe);
+        employe.ajouterProjet(this);
     }
     public void supprimerEmploye(Employes employe) {
         listeEmployes.remove(employe);

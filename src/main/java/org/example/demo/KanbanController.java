@@ -38,7 +38,6 @@ public class KanbanController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AddTache.fxml"));
             Parent root = loader.load();
-
             AddTacheController addTacheController = loader.getController();
             addTacheController.setMainController(this);
             Stage stage = new Stage();

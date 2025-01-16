@@ -96,6 +96,12 @@ public class MainViewController {
         projet4.ajouterTache(tache2);
         projet4.ajouterTache(tache3);
         projet4.ajouterTache(tache4);
+        projet4.ajouterEmploye(employe6);
+        projet4.ajouterEmploye(employe7);
+        projet4.ajouterEmploye(employe8);
+        tache1.addEquipe(employe6);
+        tache2.addEquipeDisponible(employe7);
+
         employeList.addAll(Employes.getListeEmployes());
         employeListView.setItems(employeList);
         employeListView.setCellFactory(param -> new javafx.scene.control.ListCell<>() {
