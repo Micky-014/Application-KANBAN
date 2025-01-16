@@ -200,6 +200,9 @@ public class MainViewController {
             Projets.suprProjet(projet);
             projetsList.remove(projet);
             projetsListView.refresh();
+            for (Employes employes : projet.getEmployes()) {
+                employes.suprHistoriqueProjets(projet);
+            }
         }
     }
 

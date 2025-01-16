@@ -89,6 +89,7 @@ public class KanbanController {
                 parentVBox.getChildren().remove(employeLabel); // Supprimer le label de l'interface
                 System.out.println("Employé supprimé : " + employe.getNom() + " " + employe.getPrenom());
                 projet.supprimerEmploye(employe);
+                employe.suprHistoriqueProjets(projet);
                 for (Taches tache : projet.getTaches()) {
                     if (tache.getEquipeDisponible().contains(employe)) {
                         tache.suprEquipeDisponible(employe);
