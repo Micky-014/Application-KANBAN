@@ -2,6 +2,7 @@ package org.example.demo;
 
 import Entreprise.Employes;
 import Entreprise.Projets;
+import Entreprise.Taches;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -108,6 +109,19 @@ public class EmployeInfoController {
                 afficherMessage("Suppression réussie", "L'employé a été supprimé.");
                 // Fermer la fenêtre actuelle
                 idLabel.getScene().getWindow().hide();
+                for (Projets projets : Projets.getListeProjets()){
+                    if (projets.getEmployes().contains(employe)) {
+                        projets.getEmployes().remove(employe);
+                        for (Taches taches : projets.getTaches()){
+                            if (taches.getEquipe().contains(employe)) {
+                                taches.getEquipe().remove(employe);
+                            }
+                            else if (taches.getEquipeDisponible().contains(employe)) {
+                                taches.getEquipeDisponible().remove(employe);
+                            }
+                        }
+                    }
+                }
             }
         }
     }

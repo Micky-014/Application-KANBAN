@@ -171,6 +171,9 @@ public class ProjetInfoController {
             afficherMessage("Suppression réussie", "Le projet a été supprimé.");
             // Fermer la fenêtre actuelle
             idLabel.getScene().getWindow().hide();
+            for (Employes employes : projet.getEmployes()){
+                employes.suprHistoriqueProjets(projet);
+            }
         }
     }
 

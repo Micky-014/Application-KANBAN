@@ -88,7 +88,9 @@ public class  Employes {
     public String getHistoriqueProjets() {
         return historiqueProjets.toString();
     }
-
+    public void suprHistoriqueProjets(Projets projets) {
+        historiqueProjets.remove(projets);
+    }
     @Override
     public String toString() {
         return nom + " " + prenom; // Assurez-vous que "nom" et "prenom" sont définis dans la classe Employes
