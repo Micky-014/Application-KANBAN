@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.CalendrierController" spacing="10" alignment="CENTER" >
+<VBox stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.CalendrierController" spacing="10" alignment="CENTER" >
     <HBox spacing="10" alignment="CENTER">
         <Button text="Précédent" onAction="#handlePreviousMonth" />
         <Label fx:id="monthLabel" text="Janvier 2025" styleClass="title-label" />
