@@ -16,7 +16,6 @@ public class Taches {
     private String commentaires;
     private List<Employes> Equipe = new ArrayList<>();
     private List<Employes> EquipeDisponible = new ArrayList<>();
-    private HashMap<Taches,List<Employes>> dictEquipe = new HashMap<Taches,List<Employes>>();
     public Taches(String titre, String priorite, LocalDate dateLimite,String commentaires) {
         this.id = NombreId++;
         this.titre = titre;
