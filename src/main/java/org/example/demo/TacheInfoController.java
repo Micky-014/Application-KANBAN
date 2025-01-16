@@ -19,7 +19,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TacheInfoController {
+public class  TacheInfoController {
     @FXML
     private Taches tache;
     @FXML
@@ -58,7 +58,7 @@ public class TacheInfoController {
     public void setProjet(Projets projet) {
         this.projet = projet;
         if (projet != null) {
-            System.out.println("Nom du projet = "+projet.getNomDeProjet());
+            System.out.println("Nom du projet = " + projet.getNomDeProjet());
         }
         else {
             System.out.println("Erreur chargement projet");
@@ -86,6 +86,7 @@ public class TacheInfoController {
                     tache.suprEquipeDisponible(employes);
                 }
                 System.out.println(employes);
+                
                 Label newLabel = new Label(employes.getNom()+" "+employes.getPrenom());
                 newLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #333;"); // Exemple de style
                 enableContextMenu(newLabel, employes);
