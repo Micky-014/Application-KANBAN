@@ -88,6 +88,7 @@ public class  Employes {
     public String getHistoriqueProjets() {
         return historiqueProjets.toString();
     }
+
     public void suprHistoriqueProjets(Projets projets) {
         historiqueProjets.remove(projets);
     }

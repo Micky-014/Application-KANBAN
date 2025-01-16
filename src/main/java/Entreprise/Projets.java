@@ -47,6 +47,8 @@ public class Projets {
     public void setFin(LocalDate fin) {
         this.fin = fin;
     }
+
+
     public static List<Projets> getListeProjets() {
         return listeProjets;
     }
@@ -56,6 +58,7 @@ public class Projets {
     public String getTitre(){
         return nomDeProjet;
     }
+
     public List<Employes> getEmployes() {
         return listeEmployes;
     }
@@ -66,6 +69,7 @@ public class Projets {
     public void supprimerEmploye(Employes employe) {
         listeEmployes.remove(employe);
     }
+
     public void ajouterTache(Taches tache) {
         listeTaches.add(tache);
         chercheTaches.put(tache.getTitre(), tache);

@@ -53,6 +53,7 @@ public class Taches {
     public int getId() {
         return id;
     }
+
     public String getTitre() {
         return titre;
     }
@@ -71,6 +72,7 @@ public class Taches {
     public String getCommentaires() {
         return commentaires;
     }
+
     public List<Employes> getEquipe() {
         return Equipe;
     }

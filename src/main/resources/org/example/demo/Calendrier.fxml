@@ -10,7 +10,7 @@
         <Button text="Suivant" onAction="#handleNextMonth" />
     </HBox>
     <GridPane fx:id="calendarGrid" gridLinesVisible="true" hgap="5" vgap="5">
-        <!-- Les jours et dates seront ajoutés dynamiquement -->
+
     </GridPane>
     <ListView fx:id="eventListView" prefHeight="150" />
 </VBox>
