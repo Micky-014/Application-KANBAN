@@ -51,7 +51,6 @@ public class AddProjetController {
             System.out.println("Veuillez remplir tous les champs !");
             return;
         }
-
         try {
             LocalDate debut = parseDate(jourDebut, moisDebut, anneeDebut);
             LocalDate fin = parseDate(jourFin, moisFin, anneeFin);
@@ -64,7 +63,6 @@ public class AddProjetController {
             }
             Stage stage = (Stage) nomProjetField.getScene().getWindow();
             stage.close();
-
         } catch (NumberFormatException e) {
             showAlert("Erreur", "Veuillez entrer des nombres valides pour les dates.");
         } catch (IllegalArgumentException e) {

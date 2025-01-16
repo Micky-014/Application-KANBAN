@@ -59,9 +59,9 @@ public class ProjetInfoController {
             jourDebutField.setText(String.valueOf(projet.getDebut().getDayOfMonth()));
             moisDebutField.setText(String.valueOf(projet.getDebut().getMonthValue()));
             anneeDebutField.setText(String.valueOf(projet.getDebut().getYear()));
-            jourFinField.setText(String.valueOf(projet.getDebut().getDayOfMonth()));
-            moisFinField.setText(String.valueOf(projet.getDebut().getMonthValue()));
-            anneeFinField.setText(String.valueOf(projet.getDebut().getYear()));
+            jourFinField.setText(String.valueOf(projet.getFin().getDayOfMonth()));
+            moisFinField.setText(String.valueOf(projet.getFin().getMonthValue()));
+            anneeFinField.setText(String.valueOf(projet.getFin().getYear()));
             idLabel.setText(String.valueOf(projet.getId()));
             afficherHistorique();
         }
