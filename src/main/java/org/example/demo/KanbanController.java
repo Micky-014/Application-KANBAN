@@ -40,6 +40,7 @@ public class KanbanController {
             Parent root = loader.load();
             AddTacheController addTacheController = loader.getController();
             addTacheController.setMainController(this);
+            addTacheController.setProjet(projet);
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Ajouter une Tâche");

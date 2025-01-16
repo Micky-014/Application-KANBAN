@@ -1,5 +1,6 @@
 package org.example.demo;
 
+import Entreprise.Projets;
 import Entreprise.Taches;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,13 +26,17 @@ public class AddTacheController {
     private TextArea commentairesField;
     @FXML
     private ComboBox<String> prioriteComboBox;
+    @FXML
+    private Projets projet;
 
     private KanbanController mainController;
 
     public void setMainController(KanbanController mainController) {
         this.mainController = mainController;
     }
-
+    public void setProjet(Projets projet){
+        this.projet = projet;
+    }
     @FXML
     public void initialize() {
         prioriteComboBox.getItems().addAll("Haute", "Moyenne", "Basse");
@@ -52,6 +57,7 @@ public class AddTacheController {
         try {
             LocalDate date = parseDate(jour, mois, annee);
             Taches tache = new Taches(nom, priorite, date, commentaires);
+            projet.ajouterTache(tache);
             mainController.ajouterTacheKanban(tache);
             System.out.println("Tâche ajoutée : " + tache);
             Stage stage = (Stage) nomTacheField.getScene().getWindow();
