@@ -1,5 +1,6 @@
 package org.example.demo;
 
+import Entreprise.Employes;
 import Entreprise.Projets;
 import Entreprise.Taches;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class KanbanController {
@@ -26,6 +28,8 @@ public class KanbanController {
     private VBox tacheEnCours;
     @FXML
     private VBox tacheTerminee;
+    @FXML
+    private VBox Employes;
 
     private Projets projet;
     private List<Taches> taches;
@@ -61,6 +65,7 @@ public class KanbanController {
 
         if (projet != null) {
             taches = projet.getTaches();
+            List<Employes> listeEmployes = new ArrayList<>(projet.getEmployes());
             for (Taches tache : taches) {
                 Label tacheLabel = new Label(tache.getTitre());
                 tacheLabel.setStyle("-fx-font-size: 14px; -fx-padding: 5px;");
@@ -70,12 +75,55 @@ public class KanbanController {
                     case "En cours" -> tacheEnCours.getChildren().add(tacheLabel);
                     case "Terminée" -> tacheTerminee.getChildren().add(tacheLabel);
                 }
-
                 // Activer le drag-and-drop et le menu contextuel pour chaque tâche
                 enableDragAndDrop(tacheLabel);
                 enableContextMenu(tacheLabel);
             }
+            for (Employes employes : listeEmployes) {
+                Label empLabel = new Label(employes.getNom()+" "+employes.getPrenom());
+                enableContextMenu2(empLabel, employes);
+                empLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #333;");
+                Employes.getChildren().add(empLabel);
+            }
         }
+    }
+
+
+    private void enableContextMenu2(Label employeLabel, Employes employe) {
+        // Créer un menu contextuel
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem deleteItem = new MenuItem("Supprimer");
+
+        // Action lors du clic sur "Supprimer"
+        deleteItem.setOnAction(event -> {
+            Parent parent = employeLabel.getParent();
+            if (parent instanceof VBox parentVBox) {
+                parentVBox.getChildren().remove(employeLabel); // Supprimer le label de l'interface
+                System.out.println("Employé supprimé : " + employe.getNom() + " " + employe.getPrenom());
+
+                // Supprimer l'employé dans le projet
+                projet.supprimerEmploye(employe);
+
+                // Supprimer l'employé des tâches associées
+                for (Taches tache : projet.getTaches()) {
+                    if (tache.getEquipeDisponible().contains(employe)) {
+                        tache.suprEquipeDisponible(employe);
+                    } else if (tache.getEquipe().contains(employe)) {
+                        tache.suprEquipe(employe);
+                    }
+                }
+            } else {
+                System.err.println("Erreur : le parent du label n'est pas une VBox.");
+            }
+        });
+
+        // Ajouter l'élément de suppression au menu
+        contextMenu.getItems().add(deleteItem);
+
+        // Associer l'événement de clic droit au label
+        employeLabel.setOnContextMenuRequested(event -> {
+            contextMenu.show(employeLabel, event.getScreenX(), event.getScreenY());
+        });
     }
 
     public void ajouterTacheKanban(Taches tache) {

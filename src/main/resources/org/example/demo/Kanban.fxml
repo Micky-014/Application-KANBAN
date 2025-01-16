@@ -24,7 +24,7 @@
             <Label styleClass="column-title" text="Terminée" />
             <VBox fx:id="tacheTerminee" prefHeight="600.0" prefWidth="150.0" styleClass="kanban-column" />
         </VBox>
-      <VBox alignment="TOP_CENTER" prefWidth="200.0">
+      <VBox fx:id="Employes" alignment="TOP_CENTER" prefWidth="200.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" styleClass="column-title" text="Employés" />
          </children>
